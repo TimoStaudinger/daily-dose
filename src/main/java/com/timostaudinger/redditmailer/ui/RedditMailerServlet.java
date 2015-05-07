@@ -1,20 +1,19 @@
-package com.timostaudinger.redditmailer.servlet;
+package com.timostaudinger.redditmailer.ui;
 
-import com.timostaudinger.redditmailer.util.Subreddit;
+import com.timostaudinger.redditmailer.reddit.Subreddit;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.paginators.Sorting;
 import net.dean.jraw.paginators.SubredditPaginator;
 import net.dean.jraw.paginators.TimePeriod;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "loadtester", urlPatterns = {"/test/load"})
-public class LoadTester extends HttpServlet {
+
+public class RedditMailerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
