@@ -1,4 +1,4 @@
-package com.timostaudinger.redditmailer.ui;
+package com.timostaudinger.redditmailer.admin;
 
 import com.timostaudinger.redditmailer.reddit.Subreddit;
 import net.dean.jraw.models.Submission;
