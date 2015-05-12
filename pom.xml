@@ -2,13 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.timostaudinger.redditmailer</groupId>
-    <artifactId>reddit-mailer</artifactId>
+    <groupId>com.timostaudinger.dailydose</groupId>
+    <artifactId>daily-dose</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>Reddit Mailer</name>
-    <url>http://timostaudinger.com/redditmailer</url>
+    <name>DailyDose</name>
+    <url>http://timostaudinger.com/dailydose</url>
 
     <repositories>
         <repository>
@@ -27,7 +27,7 @@
 
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-jdk14</artifactId>
+            <artifactId>slf4j-simple</artifactId>
             <version>1.7.12</version>
         </dependency>
 
@@ -38,22 +38,10 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet.jsp.jstl</groupId>
-            <artifactId>jstl-api</artifactId>
-            <version>1.2-rev-1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.faces</artifactId>
-            <version>2.1.29</version>
         </dependency>
 
     </dependencies>
@@ -66,10 +54,10 @@
                 <configuration>
                     <url>http://localhost:8080/manager/text</url>
                     <server>TomcatLocalhost</server>
-                    <path>/RedditMailer</path>
+                    <path>/DailyDose</path>
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>RedditMailer</finalName>
+        <finalName>DailyDose</finalName>
     </build>
 </project>

@@ -1,6 +1,6 @@
-package com.timostaudinger.redditmailer.admin;
+package com.timostaudinger.dailydose.admin;
 
-import com.timostaudinger.redditmailer.reddit.Subreddit;
+import com.timostaudinger.dailydose.reddit.Subreddit;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.paginators.Sorting;
 import net.dean.jraw.paginators.SubredditPaginator;

@@ -1,4 +1,4 @@
-package com.timostaudinger.redditmailer.util;
+package com.timostaudinger.dailydose.util;
 
 import java.io.IOException;
 import java.io.InputStream;

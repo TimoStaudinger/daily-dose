@@ -1,7 +1,7 @@
-package com.timostaudinger.redditmailer.reddit;
+package com.timostaudinger.dailydose.reddit;
 
-import com.timostaudinger.redditmailer.util.Properties;
-import com.timostaudinger.redditmailer.util.Version;
+import com.timostaudinger.dailydose.util.Properties;
+import com.timostaudinger.dailydose.util.Version;
 import net.dean.jraw.RedditClient;
 import net.dean.jraw.http.LoggingMode;
 import net.dean.jraw.http.UserAgent;

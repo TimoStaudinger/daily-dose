@@ -1,4 +1,4 @@
-package com.timostaudinger.redditmailer.util;
+package com.timostaudinger.dailydose.util;
 
 public class Version {
 
