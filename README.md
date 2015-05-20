@@ -14,3 +14,13 @@ it sends it to all subscribers. Easy as that, daily motivation right in your inb
 
 [3]: https://www.reddit.com/dev/api
 [4]: https://github.com/thatJavaNerd/JRAW
+
+## Progress
+
+* System Architecture: Done
+* **Main Controller development: Ongoing**
+* Reddit API integration: Nearly done
+* **Subscriber database design: Happening right now**
+* *Mail rendering: Not started yet*
+* *Mail API integration: Not started yet*
+* *Subscriber Frontend developement: Not started yet*
