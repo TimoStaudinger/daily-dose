@@ -19,7 +19,7 @@ it sends it to all subscribers. Easy as that, daily motivation right in your inb
 
 * System Architecture: Done
 * **Main Controller development: Ongoing**
-* Reddit API integration: Nearly done
+* Reddit API integration: Done
 * **Subscriber database design: Happening right now**
 * *Mail rendering: Not started yet*
 * *Mail API integration: Not started yet*
