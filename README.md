@@ -12,6 +12,7 @@ right into your inbox.
 * **Main Controller development: Ongoing**
 * Reddit API integration: Done
 * Subscriber database design: Done
+* **Subscriber database integration: Happening right now**
 * *Mail rendering: Not started yet*
 * *Mail API integration: Not started yet*
 * *Subscriber Frontend developement: Not started yet*
