@@ -1,5 +1,9 @@
 package com.timostaudinger.dailydose;
 
-public class DailyDose {
+import com.timostaudinger.dailydose.util.Frequency;
 
+public class DailyDose {
+    public static void execute(Frequency frequency) {
+
+    }
 }

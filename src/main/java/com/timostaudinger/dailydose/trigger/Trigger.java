@@ -1,8 +1,8 @@
 package com.timostaudinger.dailydose.trigger;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.timostaudinger.dailydose.DailyDose;
+import com.timostaudinger.dailydose.util.Frequency;
 
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
@@ -10,10 +10,10 @@ import javax.ejb.Singleton;
 @Singleton
 public class Trigger {
 
-    @Schedule(second = "0")
+    // Trigger daily at 8 AM
+    @Schedule(hour = "8")
     public void daily() {
-        Logger logger = LoggerFactory.getLogger(Trigger.class);
-        logger.warn("Triggered trigger");
+        DailyDose.execute(Frequency.DAILY);
     }
 
 }
