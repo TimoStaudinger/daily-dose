@@ -6,6 +6,16 @@ right into your inbox.
 [1]: https://www.reddit.com/r/getmotivated
 [2]: https://www.reddit.com/r/getdisciplined
 
+## Progress
+
+* System Architecture: Done
+* **Main Controller development: Ongoing**
+* Reddit API integration: Done
+* Subscriber database design: Done
+* *Mail rendering: Not started yet*
+* *Mail API integration: Not started yet*
+* *Subscriber Frontend developement: Not started yet*
+
 ## Architecture
 
 DailyDose uses a Java backend to retrieve the day's top posts from /r/getmotivated and /r/getdisciplined over the
@@ -15,12 +25,13 @@ it sends it to all subscribers. Easy as that, daily motivation right in your inb
 [3]: https://www.reddit.com/dev/api
 [4]: https://github.com/thatJavaNerd/JRAW
 
-## Progress
+### Database
 
-* System Architecture: Done
-* **Main Controller development: Ongoing**
-* Reddit API integration: Done
-* **Subscriber database design: Happening right now**
-* *Mail rendering: Not started yet*
-* *Mail API integration: Not started yet*
-* *Subscriber Frontend developement: Not started yet*
+The backbone of the application is a MySQL database that holds all required information about the subscribers.
+
+At the moment, it looks like this:
+
+![Database ERM](https://timostaudinger.com/wp-content/uploads/2015/05/ERM.png)
+
+The email address and name of each subscriber is stored in table `user`, in addition to an auto incrementing id and create/change timestamps. A user can be active or inactive and different email frequencies could be possible. In addition to that, each user has one to many tokens which will identify him during all changes he makes to his own account, stored in table `token`.
+
