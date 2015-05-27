@@ -1,5 +1,6 @@
 package com.timostaudinger.dailydose.reddit;
 
+import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.exception.RedditLoadException;
 import com.timostaudinger.dailydose.util.Frequency;
 import net.dean.jraw.models.Listing;
@@ -13,7 +14,7 @@ public class Subreddit {
     private Subreddit() {
     }
 
-    public static SubredditPaginator getPaginator(String subredditName, int limit, Frequency frequency, Sorting sorting) {
+    public static SubredditPaginator getPaginator(String subredditName, int limit, Frequency frequency, Sorting sorting) throws RedditAuthException {
         SubredditPaginator subreddit = new SubredditPaginator(RedditClient.getInstance());
 
         subreddit.setSubreddit(subredditName);
@@ -24,11 +25,11 @@ public class Subreddit {
         return subreddit;
     }
 
-    public static Submission getTopOf(String subreddit, Frequency frequency) throws RedditLoadException {
+    public static Submission getTopOf(String subreddit, Frequency frequency) throws RedditLoadException, RedditAuthException {
         SubredditPaginator paginator = getPaginator(subreddit, 1, frequency, Sorting.TOP);
         Listing<Submission> listing = paginator.next();
         if (listing.size() < 1) {
-            throw new RedditLoadException();
+            throw new RedditLoadException("Could not load Submissions for " + subreddit + " with frequency " + frequency.name());
         }
 
         return listing.get(0);

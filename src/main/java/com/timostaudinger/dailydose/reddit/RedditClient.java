@@ -1,5 +1,6 @@
 package com.timostaudinger.dailydose.reddit;
 
+import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.util.Properties;
 import com.timostaudinger.dailydose.util.Version;
 import net.dean.jraw.http.LoggingMode;
@@ -24,7 +25,7 @@ public class RedditClient extends net.dean.jraw.RedditClient {
         super(userAgent);
     }
 
-    public static RedditClient getInstance() {
+    public static RedditClient getInstance() throws RedditAuthException {
         if (instance == null) {
             instance = createRedditClient();
         }
@@ -32,7 +33,7 @@ public class RedditClient extends net.dean.jraw.RedditClient {
         return instance;
     }
 
-    private static RedditClient createRedditClient() {
+    private static RedditClient createRedditClient() throws RedditAuthException {
         UserAgent userAgent = UserAgent.of(PLATFORM, APP_ID, VERSION, USERNAME);
         Credentials credentials = Credentials.script(USERNAME, PASSWORD, CLIENT_ID, CLIENT_SECRET);
         RedditClient redditClient = new RedditClient(userAgent);
@@ -41,7 +42,7 @@ public class RedditClient extends net.dean.jraw.RedditClient {
             OAuthData authData = redditClient.getOAuthHelper().easyAuth(credentials);
             redditClient.authenticate(authData);
         } catch (OAuthException e) {
-            // TODO: Handle exception
+            throw new RedditAuthException("Could not authorize application", e);
         }
 
         return redditClient;

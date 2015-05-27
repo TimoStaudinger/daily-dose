@@ -1,5 +1,6 @@
 package com.timostaudinger.dailydose;
 
+import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.exception.RedditLoadException;
 import com.timostaudinger.dailydose.reddit.Subreddit;
 import com.timostaudinger.dailydose.util.Frequency;
@@ -31,10 +32,12 @@ public class DailyDose {
 
         } catch (RedditLoadException e) {
             Logger.getLogger("DailyDose.startProcess()").log(Level.SEVERE, e.getMessage());
+        } catch (RedditAuthException e) {
+            Logger.getLogger("DailyDose.startProcess()").log(Level.SEVERE, e.getMessage());
         }
     }
 
-    private void loadSubmission() throws RedditLoadException {
+    private void loadSubmission() throws RedditLoadException, RedditAuthException {
         submission = Subreddit.getTopOf("getmotivated", frequency);
     }
 }
