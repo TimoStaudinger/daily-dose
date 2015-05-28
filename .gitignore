@@ -1,7 +1,7 @@
 ### Application specific
 
 ## Configuration file
-src/main/webapp/WEB-INF/classes/config.properties
+src/main/resources/config.properties
 
 ### Java template
 *.class

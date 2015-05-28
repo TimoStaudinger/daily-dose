@@ -6,9 +6,3 @@ reddit_client_secret=sampleClientSecret
 reddit_platform=webapp
 
 app_version=0.1
-
-mysql_url=1.1.1.1
-mysql_port=3306
-mysql_dbname=dailydose
-mysql_username=dailydose
-mysql_password=sampleMysqlPassword
