@@ -2,6 +2,7 @@
 
 ## Configuration file
 src/main/resources/config.properties
+src/main/resources/hibernate.cfg.xml
 
 ### Java template
 *.class
