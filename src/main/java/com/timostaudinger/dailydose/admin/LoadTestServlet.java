@@ -1,5 +1,6 @@
 package com.timostaudinger.dailydose.admin;
 
+import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.exception.RedditLoadException;
 import com.timostaudinger.dailydose.reddit.Subreddit;
 import com.timostaudinger.dailydose.util.Frequency;
@@ -20,7 +21,12 @@ public class LoadTestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        SubredditPaginator getMotivated = Subreddit.getPaginator("getmotivated", 10, Frequency.MONTHLY, Sorting.TOP);
+        SubredditPaginator getMotivated = null;
+        try {
+            getMotivated = Subreddit.getPaginator("getmotivated", 10, Frequency.MONTHLY, Sorting.TOP);
+        } catch (RedditAuthException e) {
+            response.getWriter().println(e.getMessage());
+        }
 
         for (Submission submission : getMotivated.next()) {
             response.getWriter().println(submission.getTitle());
@@ -32,6 +38,8 @@ public class LoadTestServlet extends HttpServlet {
             String dailyTop = Subreddit.getTopOf("getmotivated", Frequency.DAILY).getTitle();
             response.getWriter().println(dailyTop);
         } catch (RedditLoadException e) {
+            response.getWriter().println(e.getMessage());
+        } catch (RedditAuthException e) {
             response.getWriter().println(e.getMessage());
         }
 

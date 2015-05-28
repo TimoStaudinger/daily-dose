@@ -1,6 +1,8 @@
 package com.timostaudinger.dailydose.admin;
 
-import com.timostaudinger.dailydose.util.Properties;
+import com.timostaudinger.dailydose.database.Database;
+import com.timostaudinger.dailydose.model.User;
+import org.hibernate.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
+import java.util.List;
 
 @WebServlet(name = "dbtest", urlPatterns = {"/test/db"})
 public class DbTestServlet extends HttpServlet {
@@ -16,20 +18,15 @@ public class DbTestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "jdbc:mysql://" + Properties.get("mysql_url") + ":" + Properties.get("mysql_port") + "/" + Properties.get("mysql_dbname");
+        Session session = Database.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        List<User> users = (List<User>) session.createQuery("from com.timostaudinger.dailydose.model.User").list();
+        session.getTransaction().commit();
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(url, Properties.get("mysql_username"), Properties.get("mysql_password"));
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM user");
-            while (resultSet.next()) {
-                response.getWriter().println(resultSet.getString("email"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        response.getWriter().println(users.size());
+
+        for (User user : users) {
+            response.getWriter().println("User " + user.getId() + " - " + user.getName() + " - " + user.getEmail() + " - " + user.getFrequency() + " - " + user.getCreatedOn() + " - " + user.getChangedOn());
         }
 
     }

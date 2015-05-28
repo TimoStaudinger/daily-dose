@@ -1,30 +1,26 @@
 package com.timostaudinger.dailydose.model;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 public class User {
     private int id;
     private String email;
+    private String name;
     private short frequency;
     private boolean active;
     private Date createdOn;
     private Date changedOn;
+    private Set<Token> tokens;
 
-    private ArrayList<Token> tokens;
-
-    public User(int id, String email, short frequency, boolean active) {
-        this.id = id;
-        this.email = email;
-        this.frequency = frequency;
-        this.active = active;
+    public User() {
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
@@ -34,6 +30,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public short getFrequency() {
@@ -56,7 +60,23 @@ public class User {
         return createdOn;
     }
 
+    private void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
     public Date getChangedOn() {
         return changedOn;
+    }
+
+    private void setChangedOn(Date changedOn) {
+        this.changedOn = changedOn;
+    }
+
+    public Set<Token> getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(Set<Token> tokens) {
+        this.tokens = tokens;
     }
 }
