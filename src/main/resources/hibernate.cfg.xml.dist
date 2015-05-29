@@ -25,7 +25,10 @@
 
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="com.timostaudinger.dailydose.model.User" resource="com/timostaudinger/dailydose/model/User.hbm.xml"/>
+        <mapping class="com.timostaudinger.dailydose.model.User"
+            resource="com/timostaudinger/dailydose/model/User.hbm.xml"/>
+        <mapping class="com.timostaudinger.dailydose.model.Token"
+             resource="com/timostaudinger/dailydose/model/Token.hbm.xml"/>
 
     </session-factory>
 

@@ -1,17 +1,20 @@
 package com.timostaudinger.dailydose.model;
 
+import com.timostaudinger.dailydose.util.Frequency;
+
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 public class User {
     private int id;
     private String email;
     private String name;
-    private short frequency;
+    private Frequency frequency;
     private boolean active;
     private Date createdOn;
     private Date changedOn;
-    private Set<Token> tokens;
+    private Set<Token> tokens = new HashSet<Token>();
 
     public User() {
     }
@@ -40,11 +43,11 @@ public class User {
         this.name = name;
     }
 
-    public short getFrequency() {
+    public Frequency getFrequency() {
         return frequency;
     }
 
-    public void setFrequency(short frequency) {
+    public void setFrequency(Frequency frequency) {
         this.frequency = frequency;
     }
 
