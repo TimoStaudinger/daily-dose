@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.model;
+package com.timostaudinger.dailydose.model.dto;
 
 import com.timostaudinger.dailydose.util.Frequency;
 

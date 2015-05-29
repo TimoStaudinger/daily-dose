@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-    <class name="com.timostaudinger.dailydose.model.Token" table="token">
+    <class name="com.timostaudinger.dailydose.model.dto.Token" table="token">
         <id name="uuid" type="string" column="uuid"/>
         <property name="used" column="used" type="boolean"/>
         <property name="createdOn" column="created_on" type="timestamp" generated="insert"/>

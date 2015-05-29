@@ -1,7 +1,7 @@
 package com.timostaudinger.dailydose.admin;
 
-import com.timostaudinger.dailydose.database.Database;
-import com.timostaudinger.dailydose.model.User;
+import com.timostaudinger.dailydose.model.database.Database;
+import com.timostaudinger.dailydose.model.dto.User;
 import org.hibernate.Session;
 
 import javax.servlet.ServletException;

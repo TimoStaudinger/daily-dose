@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.database;
+package com.timostaudinger.dailydose.model.database;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

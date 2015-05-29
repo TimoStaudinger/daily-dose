@@ -5,7 +5,7 @@
 
 <hibernate-mapping>
 
-    <class name="com.timostaudinger.dailydose.model.User" table="user">
+    <class name="com.timostaudinger.dailydose.model.dto.User" table="user">
         <id name="id">
             <generator class="native"/>
         </id>
@@ -21,7 +21,7 @@
         <property name="createdOn" type="timestamp" column="created_on" generated="insert"/>
         <set name="tokens" table="token">
             <key column="user_id"/>
-            <one-to-many class="com.timostaudinger.dailydose.model.Token"/>
+            <one-to-many class="com.timostaudinger.dailydose.model.dto.Token"/>
         </set>
     </class>
 

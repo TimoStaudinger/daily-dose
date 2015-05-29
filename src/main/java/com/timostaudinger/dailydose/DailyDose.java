@@ -2,7 +2,7 @@ package com.timostaudinger.dailydose;
 
 import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.exception.RedditLoadException;
-import com.timostaudinger.dailydose.reddit.Subreddit;
+import com.timostaudinger.dailydose.model.reddit.Subreddit;
 import com.timostaudinger.dailydose.util.Frequency;
 import net.dean.jraw.models.Submission;
 

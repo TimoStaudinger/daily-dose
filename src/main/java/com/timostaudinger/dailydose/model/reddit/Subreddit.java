@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.reddit;
+package com.timostaudinger.dailydose.model.reddit;
 
 import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.exception.RedditLoadException;
