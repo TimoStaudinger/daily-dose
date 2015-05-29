@@ -8,12 +8,8 @@ public class Token {
     private Date createdOn;
     private Date changedOn;
 
-    private User associatedUser;
 
-    public Token(String uuid, boolean used, User associatedUser) {
-        this.uuid = uuid;
-        this.used = used;
-        this.associatedUser = associatedUser;
+    public Token() {
     }
 
     public String getUuid() {
@@ -32,19 +28,19 @@ public class Token {
         this.used = used;
     }
 
-    public User getAssociatedUser() {
-        return associatedUser;
-    }
-
-    public void setAssociatedUser(User associatedUser) {
-        this.associatedUser = associatedUser;
-    }
-
     public Date getCreatedOn() {
         return createdOn;
     }
 
+    private void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
+    }
+
     public Date getChangedOn() {
         return changedOn;
+    }
+
+    private void setChangedOn(Date changedOn) {
+        this.changedOn = changedOn;
     }
 }

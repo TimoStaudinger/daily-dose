@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.timostaudinger.dailydose.model.Token" table="token">
+        <id name="uuid" type="string" column="uuid"/>
+        <property name="used" column="used" type="boolean"/>
+        <property name="createdOn" column="created_on" type="timestamp" generated="insert"/>
+        <property name="changedOn" column="changed_on" type="timestamp" generated="always"/>
+    </class>
+
+</hibernate-mapping>

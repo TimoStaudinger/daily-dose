@@ -11,9 +11,18 @@
         </id>
         <property name="email"/>
         <property name="name"/>
-        <property name="frequency" type="short"/>
+        <property name="frequency" type="int">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.timostaudinger.dailydose.util.Frequency</param>
+            </type>
+        </property>
         <property name="active" type="boolean"/>
-        <property name="changedOn" type="timestamp" column="changed_on"/>
-        <property name="createdOn" type="timestamp" column="created_on"/>
+        <property name="changedOn" type="timestamp" column="changed_on" generated="always"/>
+        <property name="createdOn" type="timestamp" column="created_on" generated="insert"/>
+        <set name="tokens" table="token">
+            <key column="user_id"/>
+            <one-to-many class="com.timostaudinger.dailydose.model.Token"/>
+        </set>
     </class>
+
 </hibernate-mapping>
