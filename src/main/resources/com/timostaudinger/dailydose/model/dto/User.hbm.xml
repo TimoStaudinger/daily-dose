@@ -11,7 +11,7 @@
         </id>
         <property name="email"/>
         <property name="name"/>
-        <property name="frequency" type="int">
+        <property name="frequency">
             <type name="org.hibernate.type.EnumType">
                 <param name="enumClass">com.timostaudinger.dailydose.util.Frequency</param>
             </type>

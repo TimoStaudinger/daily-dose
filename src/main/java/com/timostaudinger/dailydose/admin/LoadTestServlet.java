@@ -2,7 +2,7 @@ package com.timostaudinger.dailydose.admin;
 
 import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.exception.RedditLoadException;
-import com.timostaudinger.dailydose.model.reddit.Subreddit;
+import com.timostaudinger.dailydose.model.dao.RedditDAO;
 import com.timostaudinger.dailydose.util.Frequency;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.paginators.Sorting;
@@ -23,7 +23,7 @@ public class LoadTestServlet extends HttpServlet {
 
         SubredditPaginator getMotivated = null;
         try {
-            getMotivated = Subreddit.getPaginator("getmotivated", 10, Frequency.MONTHLY, Sorting.TOP);
+            getMotivated = RedditDAO.getPaginatorOf("getmotivated", 10, Frequency.MONTHLY, Sorting.TOP);
         } catch (RedditAuthException e) {
             response.getWriter().println(e.getMessage());
         }
@@ -35,7 +35,7 @@ public class LoadTestServlet extends HttpServlet {
         response.getWriter().println("\n-----------------\n");
 
         try {
-            String dailyTop = Subreddit.getTopOf("getmotivated", Frequency.DAILY).getTitle();
+            String dailyTop = RedditDAO.getTopOf("getmotivated", Frequency.DAILY).getTitle();
             response.getWriter().println(dailyTop);
         } catch (RedditLoadException e) {
             response.getWriter().println(e.getMessage());

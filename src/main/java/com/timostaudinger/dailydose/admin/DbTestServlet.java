@@ -1,8 +1,8 @@
 package com.timostaudinger.dailydose.admin;
 
-import com.timostaudinger.dailydose.model.database.Database;
+import com.timostaudinger.dailydose.model.dao.UserDAO;
+import com.timostaudinger.dailydose.model.dto.Token;
 import com.timostaudinger.dailydose.model.dto.User;
-import org.hibernate.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,15 +18,15 @@ public class DbTestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Session session = Database.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        List<User> users = (List<User>) session.createQuery("from com.timostaudinger.dailydose.model.User").list();
-        session.getTransaction().commit();
+        List<User> users = new UserDAO().findAll();
 
         response.getWriter().println(users.size());
 
         for (User user : users) {
             response.getWriter().println("User " + user.getId() + " - " + user.getName() + " - " + user.getEmail() + " - " + user.getFrequency() + " - " + user.getCreatedOn() + " - " + user.getChangedOn());
+            for (Token token : user.getTokens()) {
+                response.getWriter().println(" -- " + token.getUuid() + " - " + token.isUsed() + " - " + token.getChangedOn() + " - " + token.getCreatedOn());
+            }
         }
 
     }

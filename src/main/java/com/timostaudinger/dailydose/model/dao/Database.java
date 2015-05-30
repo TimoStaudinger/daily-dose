@@ -1,11 +1,11 @@
-package com.timostaudinger.dailydose.model.database;
+package com.timostaudinger.dailydose.model.dao;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-public class Database {
+class Database {
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
     private static SessionFactory buildSessionFactory() {
@@ -22,7 +22,7 @@ public class Database {
         }
     }
 
-    public static SessionFactory getSessionFactory() {
+    static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 }

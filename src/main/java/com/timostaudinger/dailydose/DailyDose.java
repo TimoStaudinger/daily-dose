@@ -2,7 +2,7 @@ package com.timostaudinger.dailydose;
 
 import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.exception.RedditLoadException;
-import com.timostaudinger.dailydose.model.reddit.Subreddit;
+import com.timostaudinger.dailydose.model.dao.RedditDAO;
 import com.timostaudinger.dailydose.util.Frequency;
 import net.dean.jraw.models.Submission;
 
@@ -38,6 +38,6 @@ public class DailyDose {
     }
 
     private void loadSubmission() throws RedditLoadException, RedditAuthException {
-        submission = Subreddit.getTopOf("getmotivated", frequency);
+        submission = RedditDAO.getTopOf("getmotivated", frequency);
     }
 }

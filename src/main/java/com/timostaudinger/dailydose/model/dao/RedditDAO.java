@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.model.reddit;
+package com.timostaudinger.dailydose.model.dao;
 
 import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.exception.RedditLoadException;
@@ -9,12 +9,12 @@ import net.dean.jraw.paginators.Sorting;
 import net.dean.jraw.paginators.SubredditPaginator;
 import net.dean.jraw.paginators.TimePeriod;
 
-public class Subreddit {
+public class RedditDAO {
 
-    private Subreddit() {
+    private RedditDAO() {
     }
 
-    public static SubredditPaginator getPaginator(String subredditName, int limit, Frequency frequency, Sorting sorting) throws RedditAuthException {
+    public static SubredditPaginator getPaginatorOf(String subredditName, int limit, Frequency frequency, Sorting sorting) throws RedditAuthException {
         SubredditPaginator subreddit = new SubredditPaginator(RedditClient.getInstance());
 
         subreddit.setSubreddit(subredditName);
@@ -26,7 +26,7 @@ public class Subreddit {
     }
 
     public static Submission getTopOf(String subreddit, Frequency frequency) throws RedditLoadException, RedditAuthException {
-        SubredditPaginator paginator = getPaginator(subreddit, 1, frequency, Sorting.TOP);
+        SubredditPaginator paginator = getPaginatorOf(subreddit, 1, frequency, Sorting.TOP);
         Listing<Submission> listing = paginator.next();
         if (listing.size() < 1) {
             throw new RedditLoadException("Could not load Submissions for " + subreddit + " with frequency " + frequency.name());
