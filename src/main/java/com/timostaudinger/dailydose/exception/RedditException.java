@@ -1,6 +1,6 @@
 package com.timostaudinger.dailydose.exception;
 
-public class RedditException extends Exception {
+class RedditException extends Exception {
     public RedditException(String message) {
         super(message);
     }

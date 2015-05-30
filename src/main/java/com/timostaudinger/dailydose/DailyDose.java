@@ -2,33 +2,33 @@ package com.timostaudinger.dailydose;
 
 import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.exception.RedditLoadException;
-import com.timostaudinger.dailydose.reddit.Subreddit;
+import com.timostaudinger.dailydose.model.dao.RedditDAO;
+import com.timostaudinger.dailydose.model.dao.UserDAO;
+import com.timostaudinger.dailydose.model.dto.User;
 import com.timostaudinger.dailydose.util.Frequency;
 import net.dean.jraw.models.Submission;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DailyDose {
 
-    private Frequency frequency;
-    private Submission submission;
-
-    private DailyDose(Frequency frequency) {
-        this.frequency = frequency;
+    private DailyDose() {
     }
 
     public static void execute(Frequency frequency) {
 
-        DailyDose dailyDose = new DailyDose(frequency);
-        dailyDose.startProcess();
+        DailyDose dailyDose = new DailyDose();
+        dailyDose.startProcess(frequency);
 
     }
 
-    private void startProcess() {
+    private void startProcess(Frequency frequency) {
         try {
 
-            loadSubmission();
+            Submission submission = loadSubmission(frequency);
+            List<User> users = new UserDAO().findAll(frequency);
 
         } catch (RedditLoadException e) {
             Logger.getLogger("DailyDose.startProcess()").log(Level.SEVERE, e.getMessage());
@@ -37,7 +37,7 @@ public class DailyDose {
         }
     }
 
-    private void loadSubmission() throws RedditLoadException, RedditAuthException {
-        submission = Subreddit.getTopOf("getmotivated", frequency);
+    private Submission loadSubmission(Frequency frequency) throws RedditLoadException, RedditAuthException {
+        return RedditDAO.getTopOf("getmotivated", frequency);
     }
 }

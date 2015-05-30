@@ -6,3 +6,9 @@ reddit_client_secret=sampleClientSecret
 reddit_platform=webapp
 
 app_version=0.1
+
+smtp_host=smtp.test.com
+smtp_port=465
+smtp_user=dailydose@test.com
+smtp_password=sampleMailPassword
+smtp_from=DailyDose <dailydose@test.com>

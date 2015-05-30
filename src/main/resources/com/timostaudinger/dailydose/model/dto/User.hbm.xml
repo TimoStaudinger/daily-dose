@@ -5,13 +5,13 @@
 
 <hibernate-mapping>
 
-    <class name="com.timostaudinger.dailydose.model.User" table="user">
+    <class name="com.timostaudinger.dailydose.model.dto.User" table="user">
         <id name="id">
             <generator class="native"/>
         </id>
         <property name="email"/>
         <property name="name"/>
-        <property name="frequency" type="int">
+        <property name="frequency">
             <type name="org.hibernate.type.EnumType">
                 <param name="enumClass">com.timostaudinger.dailydose.util.Frequency</param>
             </type>
@@ -21,7 +21,7 @@
         <property name="createdOn" type="timestamp" column="created_on" generated="insert"/>
         <set name="tokens" table="token">
             <key column="user_id"/>
-            <one-to-many class="com.timostaudinger.dailydose.model.Token"/>
+            <one-to-many class="com.timostaudinger.dailydose.model.dto.Token"/>
         </set>
     </class>
 

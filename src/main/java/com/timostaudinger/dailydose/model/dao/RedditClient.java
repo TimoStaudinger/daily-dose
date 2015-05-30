@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.reddit;
+package com.timostaudinger.dailydose.model.dao;
 
 import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.util.Properties;
@@ -9,7 +9,7 @@ import net.dean.jraw.http.oauth.Credentials;
 import net.dean.jraw.http.oauth.OAuthData;
 import net.dean.jraw.http.oauth.OAuthException;
 
-public class RedditClient extends net.dean.jraw.RedditClient {
+class RedditClient extends net.dean.jraw.RedditClient {
 
     private static final String PLATFORM = Properties.get("reddit_platform");
     private static final String APP_ID = Properties.get("reddit_app_id");
@@ -25,7 +25,7 @@ public class RedditClient extends net.dean.jraw.RedditClient {
         super(userAgent);
     }
 
-    public static RedditClient getInstance() throws RedditAuthException {
+    static RedditClient getInstance() throws RedditAuthException {
         if (instance == null) {
             instance = createRedditClient();
         }
