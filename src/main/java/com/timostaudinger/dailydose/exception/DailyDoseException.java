@@ -1,6 +1,6 @@
 package com.timostaudinger.dailydose.exception;
 
-class DailyDoseException extends Exception {
+abstract class DailyDoseException extends Exception {
     public DailyDoseException(String message) {
         super(message);
     }
