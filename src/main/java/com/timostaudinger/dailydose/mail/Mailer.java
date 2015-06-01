@@ -1,5 +1,6 @@
 package com.timostaudinger.dailydose.mail;
 
+import com.timostaudinger.dailydose.exception.MailException;
 import com.timostaudinger.dailydose.model.dto.User;
 import com.timostaudinger.dailydose.util.Properties;
 
@@ -9,7 +10,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.List;
 
 public class Mailer {
-    public void sendHtmlMail(String subject, String content, List<User> recipients) {
+    public void sendHtmlMail(String subject, String content, List<User> recipients) throws MailException {
         for (User recipient : recipients) {
 
             final String username = Properties.get("smtp_user");
@@ -42,7 +43,7 @@ public class Mailer {
                 Transport.send(message);
 
             } catch (MessagingException e) {
-                throw new RuntimeException(e);
+                throw new MailException(e);
             }
 
         }
