@@ -147,14 +147,13 @@
 
     <h3><a href="https://reddit.com/r/getmotivated">for Reddit</a></h3>
 
-    <h2><a href="">Made a wallpaper for my computer remind me to get back to drawing.</a></h2>
-    <img src="http://i.imgur.com/WgYGR1z.jpg"/>
+    <h2><a href="">$content.imageTitle</a></h2>
+    <img src="$content.imageUrl"/>
 
     <div class="spacer"></div>
-    <h2><a href="">The weak give up. The strong GET UP.</a></h2>
-    <blockquote>Thought of this quote whilst sitting on the toilet after a particularly tough leg day, legs were like
-        jelly and felt like sitting there and accepting my fate until this quote hit me in the face. Obviously you can
-        apply it to anything.
+    <h2><a href="">$content.quoteTitle</a></h2>
+    <blockquote>
+        $content.quoteContent
     </blockquote>
     <div class="imprint">© 2015 by <a href="https://timostaudinger.com">Timo M. Staudinger</a> | <a
             href="">Unsubscribe</a> | <a href="https://github.com/TimoSta/daily-dose">Fork me on GitHub</a>
