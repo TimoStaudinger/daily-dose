@@ -139,6 +139,17 @@
         .imprint a:hover {
             color: #000;
         }
+
+        a img {
+            -webkit-transition: opacity 100ms linear;
+            -moz-transition: opacity 100ms linear;
+            -o-transition: opacity 100ms linear;
+            transition: opacity 100ms linear;
+        }
+
+        a img:hover {
+            opacity: .9;
+        }
     </style>
 </head>
 <body>
@@ -147,11 +158,11 @@
 
     <h3><a href="https://reddit.com/r/getmotivated">for Reddit</a></h3>
 
-    <h2><a href="">$content.imageTitle</a></h2>
-    <img src="$content.imageUrl"/>
+    <h2><a href="$content.imageUrl">$content.imageTitle</a></h2>
+    <a href="$content.imageUrl"><img src="$content.imageImageUrl"/></a>
 
     <div class="spacer"></div>
-    <h2><a href="">$content.quoteTitle</a></h2>
+    <h2><a href="$content.quoteUrl">$content.quoteTitle</a></h2>
     <blockquote>
         $content.quoteContent
     </blockquote>

@@ -12,6 +12,7 @@ import java.util.List;
 public class Mailer {
     public void sendHtmlMail(String subject, String content, List<User> recipients) throws MailException {
         for (User recipient : recipients) {
+            System.out.println("Recipient " + recipient.getEmail());
 
             final String username = Properties.get("smtp_user");
             final String password = Properties.get("smtp_password");
@@ -24,14 +25,20 @@ public class Mailer {
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.port", Properties.get("smtp_port"));
 
-            Session session = Session.getInstance(props,
-                    new javax.mail.Authenticator() {
-                        protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication(username, password);
-                        }
-                    });
+            System.out.println("Before Auth");
 
+            Authenticator authenticator = new Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(username, password);
+                }
+            };
+            System.out.println("Before Session");
             try {
+                Session session = Session.getInstance(props,
+                        authenticator);
+
+                System.out.println("Mail Setup");
+                System.out.flush();
 
                 Message message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(Properties.get("smtp_from")));
@@ -39,11 +46,16 @@ public class Mailer {
                         InternetAddress.parse(recipient.getEmail()));
                 message.setSubject(subject);
                 message.setContent(content, "text/html; charset=utf-8");
-
+                System.out.println("Sending...");
                 Transport.send(message);
+                System.out.println("Sent");
 
             } catch (MessagingException e) {
+                System.out.println("Exception: " + e.getMessage());
                 throw new MailException(e);
+            } catch (Throwable e) {
+                System.out.println("Throwable: " + e.getMessage());
+                e.printStackTrace();
             }
 
         }

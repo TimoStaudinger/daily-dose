@@ -31,6 +31,7 @@ public class MailTestServlet extends HttpServlet {
 
         try {
             new Mailer().sendHtmlMail("Your DailyDose", "<b>Test</b>", users);
+            response.getWriter().println("Sent.");
         } catch (MailException e) {
             response.getWriter().println(e.getMessage());
         }
