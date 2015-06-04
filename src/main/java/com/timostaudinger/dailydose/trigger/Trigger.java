@@ -1,19 +1,27 @@
 package com.timostaudinger.dailydose.trigger;
 
 
-import com.timostaudinger.dailydose.DailyDose;
-import com.timostaudinger.dailydose.util.Frequency;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
-import javax.ejb.Schedule;
-import javax.ejb.Singleton;
+@WebListener
+public class Trigger implements ServletContextListener {
 
-@Singleton
-public class Trigger {
+    private ScheduledExecutorService scheduler;
 
-    // Trigger daily at 8 AM
-    @Schedule(hour = "8")
-    public void daily() {
-        DailyDose.execute(Frequency.DAILY);
+    @Override
+    public void contextInitialized(ServletContextEvent event) {
+        scheduler = Executors.newSingleThreadScheduledExecutor();
+//        scheduler.scheduleAtFixedRate(new DailyRunner(), 0, 1, TimeUnit.MINUTES);
+        // TODO
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent event) {
+        scheduler.shutdownNow();
     }
 
 }

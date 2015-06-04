@@ -25,6 +25,7 @@ public class UserDAO {
         Query query = session.createQuery("from com.timostaudinger.dailydose.model.dto.User");
         List<User> users = query.list();
         session.getTransaction().commit();
+        Database.closeSessionFactory();
         return users;
     }
 
@@ -34,6 +35,7 @@ public class UserDAO {
         query.setParameter("frequency", frequency);
         List<User> users = query.list();
         session.getTransaction().commit();
+        Database.closeSessionFactory();
         return users;
     }
 }

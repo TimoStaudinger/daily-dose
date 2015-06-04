@@ -1,5 +1,6 @@
 package com.timostaudinger.dailydose.admin;
 
+import com.timostaudinger.dailydose.exception.MailException;
 import com.timostaudinger.dailydose.mail.Mailer;
 import com.timostaudinger.dailydose.model.dao.UserDAO;
 import com.timostaudinger.dailydose.model.dto.User;
@@ -28,7 +29,12 @@ public class MailTestServlet extends HttpServlet {
 
         response.getWriter().println("\nSending mail...");
 
-        new Mailer().sendHtmlMail("Your DailyDose", "<b>Test</b>", users);
+        try {
+            new Mailer().sendHtmlMail("Your DailyDose", "<b>Test</b>", users);
+            response.getWriter().println("Sent.");
+        } catch (MailException e) {
+            response.getWriter().println(e.getMessage());
+        }
 
     }
 }
