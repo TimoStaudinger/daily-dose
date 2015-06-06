@@ -13,8 +13,8 @@ right into your inbox.
 * Reddit API integration: Done
 * Subscriber database design: Done
 * Subscriber database integration: Done
-* *Mail rendering: Not started yet*
-* **Mail API integration: Happening right now**
+* **Mail rendering: Happening right now**
+* Mail API integration: Done
 * *Subscriber Frontend developement: Not started yet*
 
 ## Architecture
