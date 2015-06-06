@@ -28,16 +28,6 @@ public class RedditDAO {
         return subreddit;
     }
 
-    public static Submission getTopOf(String subreddit, Frequency frequency) throws RedditLoadException, RedditAuthException {
-        SubredditPaginator paginator = getPaginatorOf(subreddit, 1, frequency, Sorting.TOP);
-        Listing<Submission> listing = paginator.next();
-        if (listing.size() < 1) {
-            throw new RedditLoadException("Could not load Submissions for " + subreddit + " with frequency " + frequency.name());
-        }
-
-        return listing.get(0);
-    }
-
     public static Submission getTopSelfPostOf(String subreddit, Frequency frequency) throws RedditLoadException, RedditAuthException {
         SubredditPaginator paginator = getPaginatorOf(subreddit, 10, frequency, Sorting.TOP);
         while (paginator.hasNext()) {

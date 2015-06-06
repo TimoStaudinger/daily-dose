@@ -19,7 +19,6 @@ public class Properties {
                 properties.load(in);
             } catch (IOException e) {
                 e.printStackTrace();
-                // TODO: Handle exception
             }
         }
         return properties;

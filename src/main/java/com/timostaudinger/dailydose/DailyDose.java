@@ -12,7 +12,6 @@ import com.timostaudinger.dailydose.model.dto.User;
 import com.timostaudinger.dailydose.render.RedditMailRenderer;
 import com.timostaudinger.dailydose.render.SubmissionCleaner;
 import com.timostaudinger.dailydose.util.Frequency;
-import net.dean.jraw.models.Submission;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -52,9 +51,5 @@ public class DailyDose {
         } catch (MailException e) {
             Logger.getLogger("DailyDose.startProcess()").log(Level.SEVERE, e.getMessage());
         }
-    }
-
-    private Submission loadSubmission(Frequency frequency) throws RedditLoadException, RedditAuthException {
-        return RedditDAO.getTopOf("getmotivated", frequency);
     }
 }

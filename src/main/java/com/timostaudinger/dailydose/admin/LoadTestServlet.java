@@ -35,7 +35,7 @@ public class LoadTestServlet extends HttpServlet {
         response.getWriter().println("\n-----------------\n");
 
         try {
-            String dailyTop = RedditDAO.getTopOf("getmotivated", Frequency.DAILY).getTitle();
+            String dailyTop = RedditDAO.getTopSelfPostOf("getmotivated", Frequency.DAILY).getTitle();
             response.getWriter().println(dailyTop);
         } catch (RedditLoadException e) {
             response.getWriter().println(e.getMessage());
