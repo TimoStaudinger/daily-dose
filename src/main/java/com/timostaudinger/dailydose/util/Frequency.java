@@ -1,7 +1,10 @@
 package com.timostaudinger.dailydose.util;
 
 public enum Frequency {
+    HOURLY,
     DAILY,
     WEEKLY,
-    MONTHLY
+    MONTHLY,
+    YEARLY,
+    ALL_TIME
 }
