@@ -17,7 +17,7 @@ public class RedditDAO {
     private RedditDAO() {
     }
 
-    public static SubredditPaginator getPaginatorOf(String subredditName, int limit, Frequency frequency, Sorting sorting) throws RedditAuthException {
+    private static SubredditPaginator getPaginatorOf(String subredditName, int limit, Frequency frequency, Sorting sorting) throws RedditAuthException {
         SubredditPaginator subreddit = new SubredditPaginator(RedditClient.getInstance());
 
         subreddit.setSubreddit(subredditName);
