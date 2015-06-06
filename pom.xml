@@ -34,7 +34,7 @@
         <dependency>
             <groupId>net.dean.jraw</groupId>
             <artifactId>JRAW</artifactId>
-            <version>0.7.0.3</version>
+            <version>0.7.1</version>
         </dependency>
 
         <dependency>
