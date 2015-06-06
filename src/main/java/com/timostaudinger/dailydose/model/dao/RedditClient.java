@@ -9,13 +9,14 @@ import net.dean.jraw.http.oauth.Credentials;
 import net.dean.jraw.http.oauth.OAuthData;
 import net.dean.jraw.http.oauth.OAuthException;
 
+import java.util.UUID;
+
 class RedditClient extends net.dean.jraw.RedditClient {
 
     private static final String PLATFORM = Properties.get("reddit_platform");
     private static final String APP_ID = Properties.get("reddit_app_id");
     private static final String VERSION = Version.get();
     private static final String USERNAME = Properties.get("reddit_username");
-    private static final String PASSWORD = Properties.get("reddit_password");
     private static final String CLIENT_ID = Properties.get("reddit_client_id");
     private static final String CLIENT_SECRET = Properties.get("reddit_client_secret");
 
@@ -35,7 +36,7 @@ class RedditClient extends net.dean.jraw.RedditClient {
 
     private static RedditClient createRedditClient() throws RedditAuthException {
         UserAgent userAgent = UserAgent.of(PLATFORM, APP_ID, VERSION, USERNAME);
-        Credentials credentials = Credentials.script(USERNAME, PASSWORD, CLIENT_ID, CLIENT_SECRET);
+        Credentials credentials = Credentials.userless(CLIENT_ID, CLIENT_SECRET, UUID.randomUUID());
         RedditClient redditClient = new RedditClient(userAgent);
         redditClient.setLoggingMode(LoggingMode.ON_FAIL);
         try {

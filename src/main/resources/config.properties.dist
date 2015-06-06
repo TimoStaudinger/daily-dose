@@ -1,6 +1,5 @@
 reddit_app_id=com.example.redditmailer
 reddit_username=JohnDoe
-reddit_password=sampleRedditPassword
 reddit_client_id=sampleClientId
 reddit_client_secret=sampleClientSecret
 reddit_platform=webapp
