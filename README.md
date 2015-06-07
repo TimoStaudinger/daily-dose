@@ -15,7 +15,9 @@ right into your inbox.
 * Subscriber database integration: Done
 * **Mail rendering: Happening right now**
 * Mail API integration: Done
+* *Admin Panel development: Not started yet*
 * *Subscriber Frontend developement: Not started yet*
+* *Monitoring system development: Not started yet*
 
 ## Architecture
 
