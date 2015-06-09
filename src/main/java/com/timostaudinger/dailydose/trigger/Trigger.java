@@ -23,7 +23,7 @@ public class Trigger implements ServletContextListener {
         ZoneId currentZone = ZoneId.of("America/New_York");
         ZonedDateTime zonedNow = ZonedDateTime.of(localNow, currentZone);
         ZonedDateTime zonedExecutionTime;
-        zonedExecutionTime = zonedNow.withHour(18).withMinute(35).withSecond(0);
+        zonedExecutionTime = zonedNow.withHour(8).withMinute(0).withSecond(0);
         if (zonedNow.compareTo(zonedExecutionTime) > 0)
             zonedExecutionTime = zonedExecutionTime.plusDays(1);
 
