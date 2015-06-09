@@ -20,7 +20,6 @@ import java.util.logging.Logger;
 public class DailyDose {
 
     public static final String SUBREDDIT = "getmotivated";
-    public static final String SUBJECT = "DailyDose";
 
     private DailyDose() {
     }
@@ -40,9 +39,11 @@ public class DailyDose {
             SelfPostSubmission quote = SubmissionCleaner.cleanSelfPostSubmission(RedditDAO.getTopSelfPostOf(SUBREDDIT, frequency));
 
             String message = new RedditMailRenderer(quote, image).render();
+            String subject = image.getTitle();
 
             Mailer mailer = new Mailer();
-            mailer.sendHtmlMail(SUBJECT, message, users);
+
+            mailer.sendHtmlMail(subject, message, users);
 
         } catch (RedditLoadException e) {
             Logger.getLogger("DailyDose.startProcess()").log(Level.SEVERE, e.getMessage());
