@@ -36,7 +36,7 @@ public class MailRenderTestServlet extends HttpServlet {
 
             String mail = new RedditMailRenderer(quote, image).render();
 
-            List<User> users = new UserDAO().findAll();
+            List<User> users = new UserDAO().findAll(Frequency.DAILY);
 
             response.getWriter().println(users.size());
 

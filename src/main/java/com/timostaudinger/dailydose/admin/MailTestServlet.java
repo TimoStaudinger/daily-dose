@@ -4,6 +4,7 @@ import com.timostaudinger.dailydose.exception.MailException;
 import com.timostaudinger.dailydose.mail.Mailer;
 import com.timostaudinger.dailydose.model.dao.UserDAO;
 import com.timostaudinger.dailydose.model.dto.User;
+import com.timostaudinger.dailydose.util.Frequency;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +20,7 @@ public class MailTestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<User> users = new UserDAO().findAll();
+        List<User> users = new UserDAO().findAll(Frequency.DAILY);
 
         response.getWriter().println(users.size());
 

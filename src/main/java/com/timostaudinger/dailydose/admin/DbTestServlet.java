@@ -3,6 +3,7 @@ package com.timostaudinger.dailydose.admin;
 import com.timostaudinger.dailydose.model.dao.UserDAO;
 import com.timostaudinger.dailydose.model.dto.Token;
 import com.timostaudinger.dailydose.model.dto.User;
+import com.timostaudinger.dailydose.util.Frequency;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,7 @@ public class DbTestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<User> users = new UserDAO().findAll();
+        List<User> users = new UserDAO().findAll(Frequency.DAILY);
 
         response.getWriter().println(users.size());
 

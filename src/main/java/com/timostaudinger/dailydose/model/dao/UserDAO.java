@@ -14,20 +14,6 @@ public class UserDAO {
         session = Database.getSessionFactory().getCurrentSession();
     }
 
-    public void save(User user) {
-        session.beginTransaction();
-        session.saveOrUpdate(user);
-        session.getTransaction().commit();
-    }
-
-    public List<User> findAll() {
-        session.beginTransaction();
-        Query query = session.createQuery("from com.timostaudinger.dailydose.model.dto.User");
-        List<User> users = query.list();
-        session.getTransaction().commit();
-        return users;
-    }
-
     public List<User> findAll(Frequency frequency) {
         session.beginTransaction();
         Query query = session.createQuery("from com.timostaudinger.dailydose.model.dto.User where frequency = :frequency");
