@@ -19,6 +19,14 @@ public class Trigger implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
+        long initalDelay = getSecondsUntil9Am();
+
+        scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(new DailyRunner(), initalDelay,
+                24 * 60 * 60, TimeUnit.SECONDS);
+    }
+
+    private long getSecondsUntil9Am() {
         LocalDateTime localNow = LocalDateTime.now();
         ZoneId currentZone = ZoneId.of("America/New_York");
         ZonedDateTime zonedNow = ZonedDateTime.of(localNow, currentZone);
@@ -28,11 +36,7 @@ public class Trigger implements ServletContextListener {
             zonedExecutionTime = zonedExecutionTime.plusDays(1);
 
         Duration duration = Duration.between(zonedNow, zonedExecutionTime);
-        long initalDelay = duration.getSeconds();
-
-        scheduler = Executors.newSingleThreadScheduledExecutor();
-        scheduler.scheduleAtFixedRate(new DailyRunner(), initalDelay,
-                24 * 60 * 60, TimeUnit.SECONDS);
+        return duration.getSeconds();
     }
 
     @Override
