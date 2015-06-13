@@ -19,19 +19,12 @@ import java.util.logging.Logger;
 
 public class DailyDose {
 
-    public static final String SUBREDDIT = "getmotivated";
+    private static final String SUBREDDIT = "getmotivated";
 
     private DailyDose() {
     }
 
-    public static void execute(Frequency frequency) {
-
-        DailyDose dailyDose = new DailyDose();
-        dailyDose.startProcess(frequency);
-
-    }
-
-    private void startProcess(Frequency frequency) {
+    public static void startProcess(Frequency frequency) {
         try {
             List<User> users = new UserDAO().findAll(frequency);
 

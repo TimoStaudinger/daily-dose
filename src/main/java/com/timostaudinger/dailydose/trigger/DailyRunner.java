@@ -6,6 +6,6 @@ import com.timostaudinger.dailydose.util.Frequency;
 public class DailyRunner implements Runnable {
     @Override
     public void run() {
-        DailyDose.execute(Frequency.DAILY);
+        DailyDose.startProcess(Frequency.DAILY);
     }
 }
