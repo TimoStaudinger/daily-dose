@@ -1,29 +1,38 @@
 package com.timostaudinger.dailydose.model.dao;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
+import com.timostaudinger.dailydose.util.Properties;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 class Database {
-    private static final SessionFactory sessionFactory = buildSessionFactory();
 
-    private static SessionFactory buildSessionFactory() {
+    private static Connection connection;
+
+    public static Connection getConnection() {
+        if (connection == null) {
+            createConnection();
+        }
+        return connection;
+    }
+
+    private static void createConnection() {
+        String userName = Properties.get("database_user");
+        String password = Properties.get("database_password");
+        String url = Properties.get("database_url");
+
         try {
-            Configuration configuration = new Configuration();
-            configuration.configure();
-            ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
-                    .applySettings(configuration.getProperties())
-                    .buildServiceRegistry();
-            return configuration.buildSessionFactory(serviceRegistry);
-        } catch (Throwable ex) {
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            // TODO: logging
+            e.printStackTrace();
+        }
+
+        try {
+            connection = DriverManager.getConnection(url, userName, password);
+        } catch (Exception e) {
+            // TODO: logging
+            e.printStackTrace();
         }
     }
-
-    static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
 }

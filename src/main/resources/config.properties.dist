@@ -11,3 +11,7 @@ smtp_port=465
 smtp_user=dailydose@test.com
 smtp_password=sampleMailPassword
 smtp_from=DailyDose <dailydose@test.com>
+
+database_user=dailydose
+database_password=sampleDatabasePassword
+database_url=jdbc:mysql://localhost:3306/dailydose

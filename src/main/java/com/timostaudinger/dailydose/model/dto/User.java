@@ -2,7 +2,10 @@ package com.timostaudinger.dailydose.model.dto;
 
 import com.timostaudinger.dailydose.util.Frequency;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class User {
     private int id;
@@ -12,7 +15,18 @@ public class User {
     private boolean active;
     private Date createdOn;
     private Date changedOn;
-    private Set<Token> tokens = new HashSet<Token>();
+    private Set<Token> tokens = new HashSet<>();
+
+    public User(int id, String email, String name, Frequency frequency, boolean active, Date createdOn, Date changedOn, Set<Token> tokens) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.frequency = frequency;
+        this.active = active;
+        this.createdOn = createdOn;
+        this.changedOn = changedOn;
+        this.tokens = tokens;
+    }
 
     public User() {
     }
@@ -86,13 +100,12 @@ public class User {
     }
 
     public Token getToken(String uuid) {
-        Iterator<Token> iterator = tokens.iterator();
-        while (iterator.hasNext()) {
-            Token token = iterator.next();
+        for (Token token : tokens) {
             if (token.getUuid().equals(uuid)) {
                 return token;
             }
         }
+
         return null;
     }
 

@@ -12,7 +12,7 @@ import net.dean.jraw.paginators.SubredditPaginator;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class RedditDAO {
+public final class RedditDAO {
 
     private RedditDAO() {
     }
@@ -57,7 +57,6 @@ public class RedditDAO {
                         }
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
-                        continue;
                     }
                 }
             }
