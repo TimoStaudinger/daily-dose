@@ -1,8 +1,6 @@
 package com.timostaudinger.dailydose;
 
-import com.timostaudinger.dailydose.exception.MailException;
-import com.timostaudinger.dailydose.exception.RedditAuthException;
-import com.timostaudinger.dailydose.exception.RedditLoadException;
+import com.timostaudinger.dailydose.exception.DailyDoseException;
 import com.timostaudinger.dailydose.mail.Mailer;
 import com.timostaudinger.dailydose.model.dao.RedditDAO;
 import com.timostaudinger.dailydose.model.dao.UserDAO;
@@ -38,11 +36,7 @@ public class DailyDose {
 
             mailer.sendHtmlMail(subject, message, users);
 
-        } catch (RedditLoadException e) {
-            Logger.getLogger("DailyDose.startProcess()").log(Level.SEVERE, e.getMessage());
-        } catch (RedditAuthException e) {
-            Logger.getLogger("DailyDose.startProcess()").log(Level.SEVERE, e.getMessage());
-        } catch (MailException e) {
+        } catch (DailyDoseException e) {
             Logger.getLogger("DailyDose.startProcess()").log(Level.SEVERE, e.getMessage());
         }
     }
