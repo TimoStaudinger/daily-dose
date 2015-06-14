@@ -9,16 +9,16 @@ right into your inbox.
 ## Progress
 
 * System Architecture: Done
-* **Main Controller development: Ongoing**
+* Main Controller development: Done
 * Reddit API integration: Done
 * Subscriber database design: Done
 * Subscriber database integration: Done
-* **Mail rendering: Happening right now**
+* Mail rendering: Done
 * Mail API integration: Done
 * *Admin Panel development: Not started yet*
 * *Subscriber Frontend developement: Not started yet*
 * *Monitoring system development: Not started yet*
-* *Unit Tests - we need Unit Tests!*
+* **Unit Test development: Happening right now**
 
 ## Architecture
 
