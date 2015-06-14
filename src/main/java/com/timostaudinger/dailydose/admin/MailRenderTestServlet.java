@@ -10,7 +10,7 @@ import com.timostaudinger.dailydose.model.dto.ImageSubmission;
 import com.timostaudinger.dailydose.model.dto.SelfPostSubmission;
 import com.timostaudinger.dailydose.model.dto.User;
 import com.timostaudinger.dailydose.render.RedditMailRenderer;
-import com.timostaudinger.dailydose.render.SubmissionCleaner;
+import com.timostaudinger.dailydose.render.SubmissionMapper;
 import com.timostaudinger.dailydose.util.Frequency;
 import net.dean.jraw.models.Submission;
 
@@ -29,14 +29,14 @@ public class MailRenderTestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Submission quoteSubmission = RedditDAO.getTopSelfPostOf("getmotivated", Frequency.DAILY);
-            SelfPostSubmission quote = SubmissionCleaner.cleanSelfPostSubmission(quoteSubmission);
+            SelfPostSubmission quote = SubmissionMapper.mapSelfpostSubmission(quoteSubmission);
 
             Submission imageSubmission = RedditDAO.getTopImageOf("getmotivated", Frequency.DAILY);
-            ImageSubmission image = SubmissionCleaner.cleanImageSubmission(imageSubmission);
+            ImageSubmission image = SubmissionMapper.mapImageSubmission(imageSubmission);
 
             String mail = new RedditMailRenderer(quote, image).render();
 
-            List<User> users = new UserDAO().findAll(Frequency.DAILY);
+            List<User> users = new UserDAO().findAllActive(Frequency.DAILY);
 
             response.getWriter().println(users.size());
 

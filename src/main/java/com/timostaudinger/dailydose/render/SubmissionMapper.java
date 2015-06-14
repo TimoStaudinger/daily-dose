@@ -7,8 +7,8 @@ import net.dean.jraw.models.Submission;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class SubmissionCleaner {
-    public static ImageSubmission cleanImageSubmission(Submission submission) {
+public class SubmissionMapper {
+    public static ImageSubmission mapImageSubmission(Submission submission) {
 
         String title = cleanTitle(submission.getTitle());
         String imageUrl = cleanImgurUrl(submission.getUrl());
@@ -16,7 +16,7 @@ public class SubmissionCleaner {
         return new ImageSubmission(title, submission.getUrl(), imageUrl);
     }
 
-    public static SelfPostSubmission cleanSelfPostSubmission(Submission submission) {
+    public static SelfPostSubmission mapSelfpostSubmission(Submission submission) {
 
         String title = cleanTitle(submission.getTitle());
         String content = cleanContent(submission.getSelftext());
@@ -34,6 +34,7 @@ public class SubmissionCleaner {
             URI uri = new URI(url);
             url = "http://i.imgur.com/" + uri.getPath() + ".jpg";
         } catch (URISyntaxException e) {
+            // TODO: logging
             e.printStackTrace();
         }
         return url;

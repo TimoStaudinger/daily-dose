@@ -8,7 +8,7 @@ import com.timostaudinger.dailydose.model.dto.ImageSubmission;
 import com.timostaudinger.dailydose.model.dto.SelfPostSubmission;
 import com.timostaudinger.dailydose.model.dto.User;
 import com.timostaudinger.dailydose.render.RedditMailRenderer;
-import com.timostaudinger.dailydose.render.SubmissionCleaner;
+import com.timostaudinger.dailydose.render.SubmissionMapper;
 import com.timostaudinger.dailydose.util.Frequency;
 
 import java.util.List;
@@ -24,10 +24,10 @@ public class DailyDose {
 
     public static void startProcess(Frequency frequency) {
         try {
-            List<User> users = new UserDAO().findAll(frequency);
+            List<User> users = new UserDAO().findAllActive(frequency);
 
-            ImageSubmission image = SubmissionCleaner.cleanImageSubmission(RedditDAO.getTopImageOf(SUBREDDIT, frequency));
-            SelfPostSubmission quote = SubmissionCleaner.cleanSelfPostSubmission(RedditDAO.getTopSelfPostOf(SUBREDDIT, frequency));
+            ImageSubmission image = SubmissionMapper.mapImageSubmission(RedditDAO.getTopImageOf(SUBREDDIT, frequency));
+            SelfPostSubmission quote = SubmissionMapper.mapSelfpostSubmission(RedditDAO.getTopSelfPostOf(SUBREDDIT, frequency));
 
             String message = new RedditMailRenderer(quote, image).render();
             String subject = image.getTitle();

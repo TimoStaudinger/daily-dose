@@ -20,7 +20,7 @@ public class MailTestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<User> users = new UserDAO().findAll(Frequency.DAILY);
+        List<User> users = new UserDAO().findAllActive(Frequency.DAILY);
 
         response.getWriter().println(users.size());
 
