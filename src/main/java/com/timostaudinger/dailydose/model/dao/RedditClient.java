@@ -22,29 +22,29 @@ class RedditClient {
 
     private static RedditClient instance;
 
-    private static net.dean.jraw.RedditClient jrawClient;
+    private net.dean.jraw.RedditClient jrawClient;
 
     private RedditClient() {
 
     }
 
     static net.dean.jraw.RedditClient getInstance() throws RedditAuthException {
-        if (instance == null || !jrawClient.isAuthenticated()) {
+        if (instance == null || !instance.jrawClient.isAuthenticated()) {
             instance = createRedditClient();
         }
 
-        return jrawClient;
+        return instance.jrawClient;
     }
 
     private static RedditClient createRedditClient() throws RedditAuthException {
         UserAgent userAgent = UserAgent.of(PLATFORM, APP_ID, VERSION, USERNAME);
         Credentials credentials = Credentials.userless(CLIENT_ID, CLIENT_SECRET, UUID.randomUUID());
         RedditClient redditClient = new RedditClient();
-        jrawClient = new net.dean.jraw.RedditClient(userAgent);
-        jrawClient.setLoggingMode(LoggingMode.ON_FAIL);
+        instance.jrawClient = new net.dean.jraw.RedditClient(userAgent);
+        instance.jrawClient.setLoggingMode(LoggingMode.ON_FAIL);
         try {
-            OAuthData authData = jrawClient.getOAuthHelper().easyAuth(credentials);
-            jrawClient.authenticate(authData);
+            OAuthData authData = instance.jrawClient.getOAuthHelper().easyAuth(credentials);
+            instance.jrawClient.authenticate(authData);
         } catch (OAuthException e) {
             throw new RedditAuthException("Could not authorize application", e);
         }
