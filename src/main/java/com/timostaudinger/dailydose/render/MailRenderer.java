@@ -8,7 +8,7 @@ import java.io.StringWriter;
 import java.util.Map;
 import java.util.Properties;
 
-public class MailRenderer {
+class MailRenderer {
 
     private static final String CONTENT = "content";
 

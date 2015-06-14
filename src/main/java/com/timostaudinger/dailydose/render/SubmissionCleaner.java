@@ -13,17 +13,20 @@ public class SubmissionCleaner {
         String title = cleanTitle(submission.getTitle());
         String imageUrl = cleanImgurUrl(submission.getUrl());
 
-        ImageSubmission imageSubmission = new ImageSubmission(title, submission.getUrl(), imageUrl);
-        return imageSubmission;
+        return new ImageSubmission(title, submission.getUrl(), imageUrl);
     }
 
     public static SelfPostSubmission cleanSelfPostSubmission(Submission submission) {
 
         String title = cleanTitle(submission.getTitle());
-        String content = submission.getSelftext();
+        String content = cleanContent(submission.getSelftext());
 
-        SelfPostSubmission selfPostSubmission = new SelfPostSubmission(title, submission.getUrl(), content);
-        return selfPostSubmission;
+        return new SelfPostSubmission(title, submission.getUrl(), content);
+    }
+
+    private static String cleanContent(String content) {
+        content = content.replaceAll("\n", "<br>");
+        return content;
     }
 
     private static String cleanImgurUrl(String url) {

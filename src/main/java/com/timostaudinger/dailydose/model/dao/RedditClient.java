@@ -27,7 +27,7 @@ class RedditClient extends net.dean.jraw.RedditClient {
     }
 
     static RedditClient getInstance() throws RedditAuthException {
-        if (instance == null) {
+        if (instance == null || !instance.isAuthenticated()) {
             instance = createRedditClient();
         }
 
