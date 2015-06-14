@@ -18,6 +18,7 @@ right into your inbox.
 * *Admin Panel development: Not started yet*
 * *Subscriber Frontend developement: Not started yet*
 * *Monitoring system development: Not started yet*
+* *Unit Tests - we need Unit Tests!*
 
 ## Architecture
 
