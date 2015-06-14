@@ -13,24 +13,23 @@ public class Mailer {
     public void sendHtmlMail(String subject, String content, List<User> recipients) throws MailException {
         Session session = getSession();
 
-        for (User recipient : recipients) {
-            try {
-                Message message = buildMessage(subject, content, session, recipient);
-                Transport.send(message);
-            } catch (MessagingException e) {
-                throw new MailException(e);
-            }
-        }
+        recipients.stream().map(User::getEmail).forEach(email -> sendMessage(subject, content, session, email));
+
     }
 
-    private Message buildMessage(String subject, String content, Session session, User recipient) throws MessagingException {
+    private void sendMessage(String subject, String content, Session session, String email) {
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(Properties.get("smtp_from")));
-        message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse(recipient.getEmail()));
-        message.setSubject(subject);
-        message.setContent(content, "text/html; charset=utf-8");
-        return message;
+        try {
+            message.setFrom(new InternetAddress(Properties.get("smtp_from")));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(email));
+            message.setSubject(subject);
+            message.setContent(content, "text/html; charset=utf-8");
+            Transport.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            // TODO: logging
+        }
     }
 
     private Session getSession() {

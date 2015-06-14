@@ -4,13 +4,13 @@ import com.timostaudinger.dailydose.exception.RedditAuthException;
 import com.timostaudinger.dailydose.exception.RedditLoadException;
 import com.timostaudinger.dailydose.util.Frequency;
 import com.timostaudinger.dailydose.util.FrequencyUtils;
-import net.dean.jraw.models.Listing;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.paginators.Sorting;
 import net.dean.jraw.paginators.SubredditPaginator;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Optional;
 
 public final class RedditDAO {
 
@@ -33,11 +33,9 @@ public final class RedditDAO {
         do {
             SubredditPaginator paginator = getPaginatorOf(subreddit, 100, currentFrequency, Sorting.TOP);
             while (paginator.hasNext()) {
-                Listing<Submission> listing = paginator.next();
-                for (Submission submission : listing) {
-                    if (submission.isSelfPost()) {
-                        return submission;
-                    }
+                Optional<Submission> submission = paginator.next().stream().filter(Submission::isSelfPost).findFirst();
+                if (submission.isPresent()) {
+                    return submission.get();
                 }
             }
         } while ((currentFrequency = FrequencyUtils.getNextHigher(currentFrequency)) != null);
@@ -49,20 +47,23 @@ public final class RedditDAO {
         do {
             SubredditPaginator paginator = getPaginatorOf(subreddit, 100, currentFrequency, Sorting.TOP);
             while (paginator.hasNext()) {
-                Listing<Submission> listing = paginator.next();
-                for (Submission submission : listing) {
-                    try {
-                        if (new URL(submission.getUrl()).getHost().contains("imgur.com")) {
-                            return submission;
-                        }
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
+                Optional<Submission> submission = paginator.next().stream().filter(RedditDAO::isHostImgur).findFirst();
+                if (submission.isPresent()) {
+                    return submission.get();
                 }
             }
         } while ((currentFrequency = FrequencyUtils.getNextHigher(currentFrequency)) != null);
-
         throw new RedditLoadException("Top Image not found");
+    }
+
+    private static boolean isHostImgur(Submission submission) {
+        try {
+            return new URL(submission.getUrl()).getHost().contains("imgur.com");
+        } catch (MalformedURLException e) {
+            // TODO: logging
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
