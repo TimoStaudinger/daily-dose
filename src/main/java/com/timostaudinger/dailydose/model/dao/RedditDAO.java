@@ -18,7 +18,7 @@ public final class RedditDAO {
     }
 
     private static SubredditPaginator getPaginatorOf(String subredditName, int limit, Frequency frequency, Sorting sorting) throws RedditAuthException {
-        SubredditPaginator subreddit = new SubredditPaginator(RedditClient.getInstance());
+        SubredditPaginator subreddit = new SubredditPaginator(RedditClient.createRedditClient());
 
         subreddit.setSubreddit(subredditName);
         subreddit.setLimit(limit);
