@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class User {
-    private int id;
+    private Integer id;
     private String email;
     private String name;
     private Frequency frequency;
@@ -17,7 +17,7 @@ public class User {
     private Date changedOn;
     private Set<Token> tokens = new HashSet<>();
 
-    public User(int id, String email, String name, Frequency frequency, boolean active, Date createdOn, Date changedOn, Set<Token> tokens) {
+    public User(Integer id, String email, String name, Frequency frequency, boolean active, Date createdOn, Date changedOn, Set<Token> tokens) {
         this.id = id;
         this.email = email;
         this.name = name;
@@ -28,14 +28,25 @@ public class User {
         this.tokens = tokens;
     }
 
+    public User(String email, Frequency frequency, boolean active, Set<Token> tokens) {
+        this.id = null;
+        this.email = email;
+        this.name = null;
+        this.frequency = frequency;
+        this.active = active;
+        this.createdOn = null;
+        this.changedOn = null;
+        this.tokens = tokens;
+    }
+
     public User() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    private void setId(int id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 

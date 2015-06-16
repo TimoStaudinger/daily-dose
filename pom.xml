@@ -40,19 +40,6 @@
             <version>0.7.1</version>
         </dependency>
 
-        <!-- Servlets -->
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- Database Connectivity -->
         <dependency>
             <groupId>mysql</groupId>
@@ -75,7 +62,6 @@
             <version>3.6.1</version>
         </dependency>
 
-
         <!-- Java Mail -->
         <dependency>
             <groupId>javax.mail</groupId>
@@ -88,6 +74,18 @@
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
             <version>1.7</version>
+        </dependency>
+
+        <!-- RESTful API -->
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>2.18</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>2.18</version>
         </dependency>
 
     </dependencies>
