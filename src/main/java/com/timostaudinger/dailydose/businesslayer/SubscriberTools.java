@@ -15,4 +15,9 @@ public class SubscriberTools {
 
         return new UserDAO().create(user);
     }
+
+    public static boolean find(String email) {
+
+        return new UserDAO().find(email) != null;
+    }
 }

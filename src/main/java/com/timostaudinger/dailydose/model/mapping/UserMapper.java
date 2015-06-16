@@ -20,18 +20,28 @@ public final class UserMapper {
         List<User> output = new ArrayList<>();
 
         for (Record r : input) {
-            Integer id = r.getValue(USER.ID);
-            String name = r.getValue(USER.NAME);
-            String email = r.getValue(USER.EMAIL);
-            Frequency frequency = Frequency.values()[r.getValue(USER.FREQUENCY)];
-            Boolean active = r.getValue(USER.ACTIVE);
-            Date createdOn = r.getValue(USER.CREATED_ON);
-            Date changedOn = r.getValue(USER.CHANGED_ON);
-
-            User user = new User(id, email, name, frequency, active, createdOn, changedOn, null);
+            User user = mapUser(r);
             output.add(user);
         }
 
         return output;
     }
+
+    public static User map(Record input) {
+        return mapUser(input);
+    }
+
+    private static User mapUser(Record r) {
+        Integer id = r.getValue(USER.ID);
+        String name = r.getValue(USER.NAME);
+        String email = r.getValue(USER.EMAIL);
+        Frequency frequency = Frequency.values()[r.getValue(USER.FREQUENCY)];
+        Boolean active = r.getValue(USER.ACTIVE);
+        Date createdOn = r.getValue(USER.CREATED_ON);
+        Date changedOn = r.getValue(USER.CHANGED_ON);
+
+        return new User(id, email, name, frequency, active, createdOn, changedOn, null);
+    }
+
+
 }

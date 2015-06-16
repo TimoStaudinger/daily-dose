@@ -34,4 +34,9 @@ public final class UserDAO {
 
         return UserMapper.map(result);
     }
+
+    public User find(String email) {
+        Record record = dslContext.select().from(USER).where(USER.EMAIL.eq(email)).fetchOne();
+        return record != null ? UserMapper.map(record) : null;
+    }
 }
