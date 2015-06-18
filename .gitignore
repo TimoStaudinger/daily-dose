@@ -2,6 +2,10 @@
 
 ## Configuration file
 src/main/resources/config.properties
+pom.xml
+
+## JOOQ generated files
+src/main/java/com/timostaudinger/dailydose/model/generated
 
 ### Java template
 *.class

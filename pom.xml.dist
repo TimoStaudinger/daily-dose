@@ -10,6 +10,12 @@
     <name>DailyDose</name>
     <url>http://timostaudinger.com/dailydose</url>
 
+    <properties>
+        <database_url>jdbc:mysql://localhost:3306/dailydose</database_url>
+        <database_user>dailydose</database_user>
+        <database_password>database_password</database_password>
+    </properties>
+
     <repositories>
         <repository>
             <id>java.net</id>
@@ -72,6 +78,7 @@
             <groupId>org.jooq</groupId>
             <artifactId>jooq-codegen</artifactId>
             <version>3.6.1</version>
+            <scope>compile</scope>
         </dependency>
 
         <!-- Java Mail -->
@@ -117,11 +124,49 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>http://localhost:8080/manager/text</url>
-                    <server>TomcatLocalhost</server>
+                    <url>http://timostaudinger.com:8080/manager/text</url>
+                    <server>TomcatRemote</server>
                     <path>/DailyDose</path>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>3.6.1</version>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <configuration>
+                    <jdbc>
+                        <driver>com.mysql.jdbc.Driver</driver>
+                        <url>${database_url}</url>
+                        <user>${database_user}</user>
+                        <password>${database_password}</password>
+                    </jdbc>
+
+                    <generator>
+                        <name>org.jooq.util.DefaultGenerator</name>
+                        <database>
+                            <name>org.jooq.util.mysql.MySQLDatabase</name>
+                            <includes>.*</includes>
+                            <excludes></excludes>
+                            <inputSchema>dailydose</inputSchema>
+                        </database>
+                        <target>
+                            <packageName>com.timostaudinger.dailydose.model.generated</packageName>
+                            <directory>src/main/java</directory>
+                        </target>
+                    </generator>
+                </configuration>
+            </plugin>
+
         </plugins>
         <finalName>DailyDose</finalName>
     </build>
