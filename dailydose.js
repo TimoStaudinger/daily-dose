@@ -5,9 +5,11 @@ angular.module('dailydoseApp', [])
         dailydose.buttontext = "Sign me up!";
         dailydose.subscribed = false;
 
+        dailydose.API_ROOT = 'https://timostaudinger.com/webapps/DailyDose/api';
+
         dailydose.subscribe = function () {
             if (!dailydose.subscribed) {
-                $http.get('http://localhost:8080/DailyDose/api/subscribe/' + dailydose.subscriber).
+                $http.get(dailydose.API_ROOT + '/subscribe/' + dailydose.subscriber).
                     success(function (data, status, headers, config) {
                         console.log(data);
                     }).
@@ -15,7 +17,7 @@ angular.module('dailydoseApp', [])
                         console.log("error");
                     });
             } else {
-                $http.get('http://localhost:8080/DailyDose/api/unsubscribe/' + dailydose.subscriber).
+                $http.get(dailydose.API_ROOT + '/unsubscribe/' + dailydose.subscriber).
                     success(function (data, status, headers, config) {
                         console.log(data);
                     }).
@@ -28,7 +30,7 @@ angular.module('dailydoseApp', [])
         dailydose.change = function () {
             if (dailydose.subscriber != undefined && dailydose.subscriber.length > 0) {
                 dailydose.buttontext = "loading...";
-                $http.get('http://localhost:8080/DailyDose/api/find/' + dailydose.subscriber).
+                $http.get(dailydose.API_ROOT + '/find/' + dailydose.subscriber).
                     success(function (data, status, headers, config) {
                         if (data === "1") {
                             dailydose.buttontext = "Unsubscribe";
