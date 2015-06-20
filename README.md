@@ -16,7 +16,7 @@ right into your inbox.
 * Mail rendering: Done
 * Mail API integration: Done
 * *Admin Panel development: Not started yet*
-* *Subscriber Frontend developement: Not started yet*
+* **Subscriber Frontend developement: Happening right now**
 * *Monitoring system development: Not started yet*
 * **Unit Test development: Happening right now**
 
