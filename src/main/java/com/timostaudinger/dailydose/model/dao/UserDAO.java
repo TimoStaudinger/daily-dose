@@ -4,6 +4,7 @@ import com.timostaudinger.dailydose.model.dto.User;
 import com.timostaudinger.dailydose.model.mapping.UserMapper;
 import com.timostaudinger.dailydose.util.Frequency;
 import org.jooq.*;
+import org.jooq.exception.DataAccessException;
 import org.jooq.impl.DSL;
 
 import java.sql.Timestamp;
@@ -21,9 +22,13 @@ public final class UserDAO {
     }
 
     public boolean create(User user) {
-        return dslContext.insertInto(USER, USER.EMAIL, USER.NAME, USER.ACTIVE, USER.FREQUENCY, USER.CHANGED_ON, USER.CREATED_ON)
-                .values(user.getEmail(), user.getName(), user.isActive(), user.getFrequency().ordinal(), new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime()))
-                .returning(USER.ID).fetchOne().getId() != null;
+        try {
+            return dslContext.insertInto(USER, USER.EMAIL, USER.NAME, USER.ACTIVE, USER.FREQUENCY, USER.CHANGED_ON, USER.CREATED_ON)
+                    .values(user.getEmail(), user.getName(), user.isActive(), user.getFrequency().ordinal(), new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime()))
+                    .returning(USER.ID).fetchOne().getId() != null;
+        } catch (DataAccessException e) {
+            return false;
+        }
     }
 
     public List<User> findAllActive(Frequency frequency) {

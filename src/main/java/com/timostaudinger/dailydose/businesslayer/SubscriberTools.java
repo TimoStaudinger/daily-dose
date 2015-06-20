@@ -3,6 +3,10 @@ package com.timostaudinger.dailydose.businesslayer;
 import com.timostaudinger.dailydose.model.dao.UserDAO;
 import com.timostaudinger.dailydose.model.dto.User;
 import com.timostaudinger.dailydose.util.Frequency;
+import com.timostaudinger.dailydose.util.ValidationTools;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SubscriberTools {
 
@@ -19,5 +23,11 @@ public class SubscriberTools {
     public static boolean find(String email) {
 
         return new UserDAO().find(email) != null;
+    }
+
+    public static List<User> findAllActive(Frequency frequency) {
+        List<User> subscribers = new UserDAO().findAllActive(frequency);
+
+        return subscribers.stream().filter(u -> ValidationTools.validateEmail(u.getEmail())).collect(Collectors.toList());
     }
 }
