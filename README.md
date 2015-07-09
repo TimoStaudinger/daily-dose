@@ -1,4 +1,4 @@
-# DailyDose
+![DailyDose](https://timostaudinger.com/wp-content/uploads/2015/06/dailydose_header.png)
 
 Your daily dose of motivation and discipline, straight from Reddit's [/r/getmotivated][1] and [/r/getdisciplined][2]
 right into your inbox.
