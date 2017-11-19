@@ -3,18 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.timostaudinger.dailydose</groupId>
+    <packaging>jar</packaging>
     <artifactId>daily-dose</artifactId>
-    <version>0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
-
-    <name>DailyDose</name>
+    <version>1.0-SNAPSHOT</version>
+    <name>daily-dose</name>
     <url>http://timostaudinger.com/dailydose</url>
-
-    <properties>
-        <database_url>jdbc:mysql://localhost:3306/dailydose</database_url>
-        <database_user>dailydose</database_user>
-        <database_password>database_password</database_password>
-    </properties>
 
     <repositories>
         <repository>
@@ -22,6 +15,18 @@
             <url>https://jcenter.bintray.com/</url>
         </repository>
     </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-bom</artifactId>
+                <version>1.11.106</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Unit Tests -->
@@ -52,33 +57,21 @@
             <version>3.1.0</version>
         </dependency>
 
+        <!-- AWS Lambda -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-lambda-java-core</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
         <!-- Database Connectivity -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.35</version>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jdbc</artifactId>
-            <version>8.0.23</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq</artifactId>
-            <version>3.6.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq-meta</artifactId>
-            <version>3.6.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq-codegen</artifactId>
-            <version>3.6.1</version>
-            <scope>compile</scope>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-dynamodb</artifactId>
         </dependency>
 
         <!-- Java Mail -->
@@ -113,60 +106,28 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.7.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
                 <configuration>
-                    <url>http://timostaudinger.com:8080/manager/text</url>
-                    <server>TomcatRemote</server>
-                    <path>/DailyDose</path>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.jooq</groupId>
-                <artifactId>jooq-codegen-maven</artifactId>
-                <version>3.6.1</version>
-
                 <executions>
                     <execution>
+                        <phase>package</phase>
                         <goals>
-                            <goal>generate</goal>
+                            <goal>shade</goal>
                         </goals>
                     </execution>
                 </executions>
-
-                <configuration>
-                    <jdbc>
-                        <driver>com.mysql.jdbc.Driver</driver>
-                        <url>${database_url}</url>
-                        <user>${database_user}</user>
-                        <password>${database_password}</password>
-                    </jdbc>
-
-                    <generator>
-                        <name>org.jooq.util.DefaultGenerator</name>
-                        <database>
-                            <name>org.jooq.util.mysql.MySQLDatabase</name>
-                            <includes>.*</includes>
-                            <excludes></excludes>
-                            <inputSchema>dailydose</inputSchema>
-                        </database>
-                        <target>
-                            <packageName>com.timostaudinger.dailydose.model.generated</packageName>
-                            <directory>src/main/java</directory>
-                        </target>
-                    </generator>
-                </configuration>
             </plugin>
-
         </plugins>
         <finalName>DailyDose</finalName>
     </build>

@@ -22,22 +22,23 @@ public class DailyDose {
     private DailyDose() {
     }
 
-    public static void startProcess(Frequency frequency) {
-        try {
-            List<User> users = SubscriberTools.findAllActive(frequency);
+    public static List<User> scheduleEmails() {
+//        try {
+            List<User> users = SubscriberTools.findAllActive();
 
-            ImageSubmission image = SubmissionMapper.mapImageSubmission(RedditDAO.getTopImageOf(SUBREDDIT, frequency));
-            SelfPostSubmission quote = SubmissionMapper.mapSelfpostSubmission(RedditDAO.getTopSelfPostOf(SUBREDDIT, frequency));
+//            ImageSubmission image = SubmissionMapper.mapImageSubmission(RedditDAO.getTopImageOf(SUBREDDIT, Frequency.DAILY));
+//            SelfPostSubmission quote = SubmissionMapper.mapSelfpostSubmission(RedditDAO.getTopSelfPostOf(SUBREDDIT, Frequency.DAILY));
 
-            String message = new RedditMailRenderer(quote, image).render();
-            String subject = image.getTitle();
+//            String message = new RedditMailRenderer(quote, image).render();
+//            String subject = image.getTitle();
+//
+//            Mailer mailer = new Mailer();
 
-            Mailer mailer = new Mailer();
+//            mailer.sendHtmlMail(subject, message, users);
 
-            mailer.sendHtmlMail(subject, message, users);
-
-        } catch (DailyDoseException e) {
-            Logger.getLogger("DailyDose.startProcess()").log(Level.SEVERE, e.getMessage());
-        }
+            return users;
+//        } catch (DailyDoseException e) {
+//            Logger.getLogger("DailyDose.startProcess()").log(Level.SEVERE, e.getMessage());
+//        }
     }
 }

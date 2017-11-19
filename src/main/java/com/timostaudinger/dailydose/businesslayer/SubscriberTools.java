@@ -13,20 +13,20 @@ public class SubscriberTools {
     private SubscriberTools() {
     }
 
-    public static boolean subscribe(String email) {
+//    public static boolean subscribe(String email) {
+//
+//        User user = new User(email, Frequency.DAILY, true, null);
+//
+//        return new UserDAO().create(user);
+//    }
 
-        User user = new User(email, Frequency.DAILY, true, null);
+//    public static boolean find(String email) {
+//
+//        return new UserDAO().find(email) != null;
+//    }
 
-        return new UserDAO().create(user);
-    }
-
-    public static boolean find(String email) {
-
-        return new UserDAO().find(email) != null;
-    }
-
-    public static List<User> findAllActive(Frequency frequency) {
-        List<User> subscribers = new UserDAO().findAllActive(frequency);
+    public static List<User> findAllActive() {
+        List<User> subscribers = new UserDAO().findAllActive();
 
         return subscribers.stream().filter(u -> ValidationTools.validateEmail(u.getEmail())).collect(Collectors.toList());
     }

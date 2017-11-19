@@ -1,13 +1,4 @@
-### Application specific
-
-## Configuration file
-src/main/resources/config.properties
-pom.xml
-
-## JOOQ generated files
-src/main/java/com/timostaudinger/dailydose/model/generated
-
-### Java template
+# Java template
 *.class
 
 # Package Files #
@@ -28,7 +19,5 @@ hs_err_pid*
 *.ipr
 *.iws
 
-## Plugin-specific files:
-
-# IntelliJ
 out/
+target/

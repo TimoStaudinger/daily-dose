@@ -1,47 +1,36 @@
 package com.timostaudinger.dailydose.model.dao;
 
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.timostaudinger.dailydose.model.dto.User;
-import com.timostaudinger.dailydose.model.mapping.UserMapper;
-import com.timostaudinger.dailydose.util.Frequency;
-import org.jooq.*;
-import org.jooq.exception.DataAccessException;
-import org.jooq.impl.DSL;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static com.timostaudinger.dailydose.model.generated.Tables.USER;
-
 public final class UserDAO {
-    private DSLContext dslContext;
+//    public boolean create(User user) {
+//        try {
+//            return dslContext.insertInto(USER, USER.EMAIL, USER.NAME, USER.ACTIVE, USER.FREQUENCY, USER.CHANGED_ON, USER.CREATED_ON)
+//                    .values(user.getEmail(), user.getName(), user.isActive(), user.getFrequency().ordinal(), new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime()))
+//                    .returning(USER.ID).fetchOne().getId() != null;
+//        } catch (DataAccessException e) {
+//            return false;
+//        }
+//    }
 
-    public UserDAO() {
-        dslContext = DSL.using(Database.getConnection(), SQLDialect.MYSQL);
+    public List<User> findAllActive() {
+        final AmazonDynamoDB client = AmazonDynamoDBClientBuilder.defaultClient();
+        final DynamoDBMapper mapper = new DynamoDBMapper(client);
+
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        List<User> users = mapper.scan(User.class, scanExpression);
+
+        return users;
     }
 
-    public boolean create(User user) {
-        try {
-            return dslContext.insertInto(USER, USER.EMAIL, USER.NAME, USER.ACTIVE, USER.FREQUENCY, USER.CHANGED_ON, USER.CREATED_ON)
-                    .values(user.getEmail(), user.getName(), user.isActive(), user.getFrequency().ordinal(), new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime()))
-                    .returning(USER.ID).fetchOne().getId() != null;
-        } catch (DataAccessException e) {
-            return false;
-        }
-    }
-
-    public List<User> findAllActive(Frequency frequency) {
-        List<Condition> conditions = new ArrayList<>();
-        conditions.add(USER.FREQUENCY.eq(frequency.ordinal()));
-        conditions.add(USER.ACTIVE.eq(true));
-        Result<Record> result = dslContext.select().from(USER).where(conditions).fetch();
-
-        return UserMapper.map(result);
-    }
-
-    public User find(String email) {
-        Record record = dslContext.select().from(USER).where(USER.EMAIL.eq(email)).fetchOne();
-        return record != null ? UserMapper.map(record) : null;
-    }
+//    public User find(String email) {
+//        Record record = dslContext.select().from(USER).where(USER.EMAIL.eq(email)).fetchOne();
+//        return record != null ? UserMapper.map(record) : null;
+//    }
 }
