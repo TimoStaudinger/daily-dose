@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.common.exception;
+package com.timostaudinger.dailydose.scheduleEmails.exception;
 
 public class RedditLoadException extends DailyDoseException {
     public RedditLoadException(String message) {

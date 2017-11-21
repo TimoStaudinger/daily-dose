@@ -1,9 +1,9 @@
-package com.timostaudinger.dailydose.common.model.dto;
+package com.timostaudinger.dailydose.scheduleEmails.model.dto;
 
-public class SelfPostSubmission extends Submission {
+public class SelfpostSubmission extends Submission {
     private String content;
 
-    public SelfPostSubmission(String title, String url, String content) {
+    public SelfpostSubmission(String title, String url, String content) {
         super(title, url);
         this.content = content;
     }

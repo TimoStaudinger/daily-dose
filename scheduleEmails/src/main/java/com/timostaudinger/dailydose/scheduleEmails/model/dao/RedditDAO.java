@@ -1,9 +1,9 @@
-package com.timostaudinger.dailydose.common.model.dao;
+package com.timostaudinger.dailydose.scheduleEmails.model.dao;
 
-import com.timostaudinger.dailydose.common.exception.RedditAuthException;
-import com.timostaudinger.dailydose.common.exception.RedditLoadException;
-import com.timostaudinger.dailydose.common.util.Frequency;
-import com.timostaudinger.dailydose.common.util.FrequencyUtils;
+import com.timostaudinger.dailydose.scheduleEmails.exception.RedditAuthException;
+import com.timostaudinger.dailydose.scheduleEmails.exception.RedditLoadException;
+import com.timostaudinger.dailydose.scheduleEmails.util.Frequency;
+import com.timostaudinger.dailydose.scheduleEmails.util.FrequencyUtils;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.paginators.Sorting;
 import net.dean.jraw.paginators.SubredditPaginator;
@@ -18,7 +18,7 @@ public final class RedditDAO {
     }
 
     private static SubredditPaginator getPaginatorOf(String subredditName, int limit, Frequency frequency, Sorting sorting) throws RedditAuthException {
-        SubredditPaginator subreddit = new SubredditPaginator(RedditClient.createRedditClient());
+        SubredditPaginator subreddit = new SubredditPaginator(RedditClientBuilder.createRedditClient());
 
         subreddit.setSubreddit(subredditName);
         subreddit.setLimit(limit);

@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.common.model.dto;
+package com.timostaudinger.dailydose.scheduleEmails.model.dto;
 
 public class ImageSubmission extends Submission {
     private String imageUrl;

@@ -55,7 +55,7 @@
         <dependency>
             <groupId>net.dean.jraw</groupId>
             <artifactId>JRAW</artifactId>
-            <version>0.7.1</version>
+            <version>0.9.0</version>
         </dependency>
 
         <dependency>
@@ -64,28 +64,24 @@
             <version>3.1.0</version>
         </dependency>
 
-        <!-- AWS Lambda -->
+        <!-- AWS Lambda API -->
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-core</artifactId>
             <version>1.1.0</version>
         </dependency>
 
-        <!-- Database Connectivity -->
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-s3</artifactId>
-        </dependency>
+        <!-- AWS DynamoDB API -->
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-dynamodb</artifactId>
         </dependency>
 
-        <!-- Java Mail -->
+        <!-- AWS Mail API -->
         <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>javax.mail-api</artifactId>
-            <version>1.5.3</version>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-ses</artifactId>
+            <version>1.11.232</version>
         </dependency>
 
         <!-- Rendering Engine -->

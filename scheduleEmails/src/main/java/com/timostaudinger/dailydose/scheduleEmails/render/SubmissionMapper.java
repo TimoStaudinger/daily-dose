@@ -1,7 +1,7 @@
 package com.timostaudinger.dailydose.scheduleEmails.render;
 
-import com.timostaudinger.dailydose.common.model.dto.ImageSubmission;
-import com.timostaudinger.dailydose.common.model.dto.SelfPostSubmission;
+import com.timostaudinger.dailydose.scheduleEmails.model.dto.ImageSubmission;
+import com.timostaudinger.dailydose.scheduleEmails.model.dto.SelfpostSubmission;
 import net.dean.jraw.models.Submission;
 
 import java.net.URI;
@@ -16,12 +16,12 @@ public class SubmissionMapper {
         return new ImageSubmission(title, submission.getUrl(), imageUrl);
     }
 
-    public static SelfPostSubmission mapSelfpostSubmission(Submission submission) {
+    public static SelfpostSubmission mapSelfpostSubmission(Submission submission) {
 
         String title = cleanTitle(submission.getTitle());
         String content = cleanContent(submission.getSelftext());
 
-        return new SelfPostSubmission(title, submission.getUrl(), content);
+        return new SelfpostSubmission(title, submission.getUrl(), content);
     }
 
     private static String cleanContent(String content) {

@@ -1,57 +1,35 @@
 package com.timostaudinger.dailydose.scheduleEmails.mail;
 
-import com.timostaudinger.dailydose.common.exception.MailException;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
+import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
+import com.amazonaws.services.simpleemail.model.*;
 import com.timostaudinger.dailydose.common.model.dto.User;
-import com.timostaudinger.dailydose.common.util.Properties;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Mailer {
-    public void sendHtmlMail(String subject, String content, List<User> recipients) throws MailException {
-        Session session = getSession();
+    private String sender;
 
-        recipients.stream().map(User::getEmail).forEach(email -> sendMessage(subject, content, session, email));
-
+    public Mailer (final String sender) {
+        this.sender = sender;
     }
 
-    private void sendMessage(String subject, String content, Session session, String email) {
-        Message message = new MimeMessage(session);
-        try {
-            message.setFrom(new InternetAddress(Properties.get("smtp_from")));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(email));
-            message.setSubject(subject);
-            message.setContent(content, "text/html; charset=utf-8");
-            Transport.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-            // TODO: logging
-        }
-    }
+    public void sendHtmlMail(String subject, String content, List<User> recipients) {
+        List<String> toAddresses = recipients.stream().map(User::getEmail).collect(Collectors.toList());
 
-    private Session getSession() {
-        final String username = Properties.get("smtp_user");
-        final String password = Properties.get("smtp_password");
+        AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.standard()
+                .withRegion(Regions.US_EAST_1).build();
 
-        java.util.Properties props = new java.util.Properties();
-        props.put("mail.smtp.host", Properties.get("smtp_host"));
-        props.put("mail.smtp.socketFactory.port", Properties.get("smtp_port"));
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", Properties.get("smtp_port"));
+        SendEmailRequest request = new SendEmailRequest()
+                .withDestination(new Destination().withToAddresses(toAddresses))
+                .withMessage(
+                        new Message()
+                                .withBody(new Body().withHtml(new Content().withCharset("UTF-8").withData(content)))
+                                .withSubject(new Content().withCharset("UTF-8").withData(subject)))
+                .withSource(this.sender);
 
-        System.out.println("Before Auth");
-
-        Authenticator authenticator = new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-            }
-        };
-        return Session.getInstance(props,
-                authenticator);
+        client.sendEmail(request);
     }
 }

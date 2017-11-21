@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.common.util;
+package com.timostaudinger.dailydose.scheduleEmails.util;
 
 import net.dean.jraw.paginators.TimePeriod;
 

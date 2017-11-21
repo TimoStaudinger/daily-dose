@@ -1,7 +1,7 @@
 package com.timostaudinger.dailydose.scheduleEmails.render;
 
-import com.timostaudinger.dailydose.common.model.dto.ImageSubmission;
-import com.timostaudinger.dailydose.common.model.dto.SelfPostSubmission;
+import com.timostaudinger.dailydose.scheduleEmails.model.dto.ImageSubmission;
+import com.timostaudinger.dailydose.scheduleEmails.model.dto.SelfpostSubmission;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,10 +19,10 @@ public class RedditMailRenderer {
     private MailRenderer mailRenderer;
 
     private ImageSubmission imageSubmission;
-    private SelfPostSubmission selfPostSubmission;
+    private SelfpostSubmission selfpostSubmission;
 
-    public RedditMailRenderer(SelfPostSubmission selfPostSubmission, ImageSubmission imageSubmission) {
-        this.selfPostSubmission = selfPostSubmission;
+    public RedditMailRenderer(SelfpostSubmission selfpostSubmission, ImageSubmission imageSubmission) {
+        this.selfpostSubmission = selfpostSubmission;
         this.imageSubmission = imageSubmission;
     }
 
@@ -44,9 +44,9 @@ public class RedditMailRenderer {
         content.put(IMAGE_TITLE, imageSubmission.getTitle());
         content.put(IMAGE_URL, imageSubmission.getUrl());
         content.put(IMAGE_IMAGE_URL, imageSubmission.getImageUrl());
-        content.put(QUOTE_TITLE, selfPostSubmission.getTitle());
-        content.put(QUOTE_URL, selfPostSubmission.getUrl());
-        content.put(QUOTE_CONTENT, selfPostSubmission.getContent());
+        content.put(QUOTE_TITLE, selfpostSubmission.getTitle());
+        content.put(QUOTE_URL, selfpostSubmission.getUrl());
+        content.put(QUOTE_CONTENT, selfpostSubmission.getContent());
 
         return content;
     }
