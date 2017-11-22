@@ -15,7 +15,7 @@ import java.util.List;
 public class EmailScheduler {
     private  static final Frequency FREQUENCY = Frequency.DAILY;
     private static final String SUBREDDIT = "getmotivated";
-    private static final String MAIL_SENDER = "dailydose@timostaudinger.com";
+    private static final String MAIL_SENDER = "DailyDose <dailydose@timostaudinger.com>";
     private static final String MAIL_SUBJECT = "DailyDose";
 
     private EmailScheduler() {}
