@@ -14,13 +14,13 @@ import java.util.List;
 
 public class EmailScheduler {
     private  static final Frequency FREQUENCY = Frequency.DAILY;
-    private static final String SUBREDDIT = "getmotivated";
-    private static final String MAIL_SENDER = "DailyDose <dailydose@timostaudinger.com>";
-    private static final String MAIL_SUBJECT = "DailyDose";
+    private static final String SUBREDDIT = System.getenv("SUBREDDIT");
+    private static final String MAIL_SENDER = System.getenv("MAIL_SENDER");
+    private static final String MAIL_SUBJECT = System.getenv("MAIL_SUBJECT");
 
     private EmailScheduler() {}
 
-    public static void scheduleEmails() {
+    public static long scheduleEmails() {
         List<User> users = SubscriberTools.findAllActive();
 
         ImageSubmission imageSubmission = SubmissionMapper.mapImageSubmission(RedditDAO.getTopImageOf(SUBREDDIT, FREQUENCY));
@@ -30,5 +30,7 @@ public class EmailScheduler {
 
         Mailer mailer = new Mailer(MAIL_SENDER);
         mailer.sendHtmlMail(MAIL_SUBJECT, mailBody, users);
+
+        return users.size();
     }
 }
