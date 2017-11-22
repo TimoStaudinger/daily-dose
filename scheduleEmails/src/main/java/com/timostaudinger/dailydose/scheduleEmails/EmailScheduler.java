@@ -1,6 +1,6 @@
 package com.timostaudinger.dailydose.scheduleEmails;
 
-import com.timostaudinger.dailydose.scheduleEmails.businesslayer.SubscriberTools;
+import com.timostaudinger.dailydose.common.model.dao.UserDAO;
 import com.timostaudinger.dailydose.common.model.dto.User;
 import com.timostaudinger.dailydose.scheduleEmails.mail.Mailer;
 import com.timostaudinger.dailydose.scheduleEmails.model.dao.RedditDAO;
@@ -21,7 +21,7 @@ public class EmailScheduler {
     private EmailScheduler() {}
 
     public static long scheduleEmails() {
-        List<User> users = SubscriberTools.findAllActive();
+        List<User> users = new UserDAO().findAllActive();
 
         ImageSubmission imageSubmission = SubmissionMapper.mapImageSubmission(RedditDAO.getTopImageOf(SUBREDDIT, FREQUENCY));
         SelfpostSubmission selfpostSubmission = SubmissionMapper.mapSelfpostSubmission(RedditDAO.getTopSelfPostOf(SUBREDDIT, FREQUENCY));

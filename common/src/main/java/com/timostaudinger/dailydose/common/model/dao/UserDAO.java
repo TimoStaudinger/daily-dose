@@ -9,15 +9,13 @@ import com.timostaudinger.dailydose.common.model.dto.User;
 import java.util.List;
 
 public final class UserDAO {
-//    public boolean create(User user) {
-//        try {
-//            return dslContext.insertInto(USER, USER.EMAIL, USER.NAME, USER.ACTIVE, USER.FREQUENCY, USER.CHANGED_ON, USER.CREATED_ON)
-//                    .values(user.getEmail(), user.getName(), user.isActive(), user.getFrequency().ordinal(), new Timestamp(new Date().getTime()), new Timestamp(new Date().getTime()))
-//                    .returning(USER.ID).fetchOne().getId() != null;
-//        } catch (DataAccessException e) {
-//            return false;
-//        }
-//    }
+    public boolean subscribe(String email) {
+        return true;
+    }
+
+    public boolean unsubscribe(String email) {
+        return true;
+    }
 
     public List<User> findAllActive() {
         final AmazonDynamoDB client = AmazonDynamoDBClientBuilder.defaultClient();
@@ -28,9 +26,4 @@ public final class UserDAO {
 
         return users;
     }
-
-//    public User find(String email) {
-//        Record record = dslContext.select().from(USER).where(USER.EMAIL.eq(email)).fetchOne();
-//        return record != null ? UserMapper.map(record) : null;
-//    }
 }

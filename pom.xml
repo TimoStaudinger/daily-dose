@@ -12,6 +12,7 @@
     <modules>
         <module>common</module>
         <module>scheduleEmails</module>
+        <module>api</module>
     </modules>
 
     <build>
