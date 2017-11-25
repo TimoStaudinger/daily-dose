@@ -23,7 +23,7 @@ class MailRenderer {
         VelocityEngine velocityEngine = new VelocityEngine(getVelocityProperties());
         velocityEngine.init();
 
-        Template template = velocityEngine.getTemplate(templateName);
+        Template template = velocityEngine.getTemplate(templateName, "UTF-8");
 
         StringWriter stringWriter = new StringWriter();
         template.merge(createContext(), stringWriter);

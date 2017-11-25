@@ -26,8 +26,8 @@ public class Mailer {
                 .withDestination(new Destination().withToAddresses(toAddresses))
                 .withMessage(
                         new Message()
-                                .withBody(new Body().withHtml(new Content().withCharset("UTF-8").withData(content)))
-                                .withSubject(new Content().withCharset("UTF-8").withData(subject)))
+                                .withBody(new Body().withHtml(new Content().withData(content)))
+                                .withSubject(new Content().withData(subject)))
                 .withSource(this.sender);
 
         client.sendEmail(request);
