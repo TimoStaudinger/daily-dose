@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.model.dao;
+package com.timostaudinger.dailydose.scheduleEmails.model.dao;
 
 import net.dean.jraw.models.Submission;
 import org.junit.Test;

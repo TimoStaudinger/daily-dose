@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.util;
+package com.timostaudinger.dailydose.scheduleEmails.util;
 
 import org.junit.Test;
 
