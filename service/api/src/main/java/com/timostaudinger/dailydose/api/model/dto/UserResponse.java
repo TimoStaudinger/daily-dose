@@ -1,10 +1,10 @@
 package com.timostaudinger.dailydose.api.model.dto;
 
-public class Response {
+public class UserResponse {
     private String message;
     private boolean success;
 
-    public Response (String message, boolean success) {
+    public UserResponse(String message, boolean success) {
         this.message = message;
         this.success = success;
     }

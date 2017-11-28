@@ -45,6 +45,13 @@
             <version>1.7.12</version>
         </dependency>
 
+        <!-- Reddit API Wrapper -->
+        <dependency>
+            <groupId>net.dean.jraw</groupId>
+            <artifactId>JRAW</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+
         <!-- AWS DynamoDB API -->
         <dependency>
             <groupId>com.amazonaws</groupId>

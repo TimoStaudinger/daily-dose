@@ -3,12 +3,12 @@ package com.timostaudinger.dailydose.scheduleEmails;
 import com.timostaudinger.dailydose.common.model.dao.UserDAO;
 import com.timostaudinger.dailydose.common.model.dto.User;
 import com.timostaudinger.dailydose.scheduleEmails.mail.Mailer;
-import com.timostaudinger.dailydose.scheduleEmails.model.dao.RedditDAO;
-import com.timostaudinger.dailydose.scheduleEmails.model.dto.ImageSubmission;
-import com.timostaudinger.dailydose.scheduleEmails.model.dto.SelfpostSubmission;
+import com.timostaudinger.dailydose.common.model.dao.RedditDAO;
+import com.timostaudinger.dailydose.common.model.dto.ImageSubmission;
+import com.timostaudinger.dailydose.common.model.dto.SelfpostSubmission;
 import com.timostaudinger.dailydose.scheduleEmails.render.RedditMailRenderer;
-import com.timostaudinger.dailydose.scheduleEmails.render.SubmissionMapper;
-import com.timostaudinger.dailydose.scheduleEmails.util.Frequency;
+import com.timostaudinger.dailydose.common.model.dao.SubmissionMapper;
+import com.timostaudinger.dailydose.common.util.Frequency;
 
 import java.util.List;
 

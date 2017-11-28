@@ -1,7 +1,7 @@
 package com.timostaudinger.dailydose.scheduleEmails.render;
 
-import com.timostaudinger.dailydose.scheduleEmails.model.dto.ImageSubmission;
-import com.timostaudinger.dailydose.scheduleEmails.model.dto.SelfpostSubmission;
+import com.timostaudinger.dailydose.common.model.dto.ImageSubmission;
+import com.timostaudinger.dailydose.common.model.dto.SelfpostSubmission;
 
 import java.util.HashMap;
 import java.util.Map;

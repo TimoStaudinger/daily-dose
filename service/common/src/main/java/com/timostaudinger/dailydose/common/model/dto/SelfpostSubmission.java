@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.scheduleEmails.model.dto;
+package com.timostaudinger.dailydose.common.model.dto;
 
 public class SelfpostSubmission extends Submission {
     private String content;

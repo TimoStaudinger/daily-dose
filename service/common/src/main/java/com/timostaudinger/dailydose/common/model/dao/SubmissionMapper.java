@@ -1,7 +1,7 @@
-package com.timostaudinger.dailydose.scheduleEmails.render;
+package com.timostaudinger.dailydose.common.model.dao;
 
-import com.timostaudinger.dailydose.scheduleEmails.model.dto.ImageSubmission;
-import com.timostaudinger.dailydose.scheduleEmails.model.dto.SelfpostSubmission;
+import com.timostaudinger.dailydose.common.model.dto.ImageSubmission;
+import com.timostaudinger.dailydose.common.model.dto.SelfpostSubmission;
 import net.dean.jraw.models.Submission;
 
 import java.net.URI;

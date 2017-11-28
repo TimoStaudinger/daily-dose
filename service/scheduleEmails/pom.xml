@@ -10,13 +10,6 @@
     <packaging>jar</packaging>
     <artifactId>daily-dose-scheduleemails</artifactId>
 
-    <repositories>
-        <repository>
-            <id>java.net</id>
-            <url>https://jcenter.bintray.com/</url>
-        </repository>
-    </repositories>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -49,13 +42,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.12</version>
-        </dependency>
-
-        <!-- Reddit API Wrapper -->
-        <dependency>
-            <groupId>net.dean.jraw</groupId>
-            <artifactId>JRAW</artifactId>
-            <version>0.9.0</version>
         </dependency>
 
         <!-- AWS Lambda API -->

@@ -1,6 +1,6 @@
-package com.timostaudinger.dailydose.scheduleEmails.model.dao;
+package com.timostaudinger.dailydose.common.model.dao;
 
-import com.timostaudinger.dailydose.scheduleEmails.exception.RedditAuthException;
+import com.timostaudinger.dailydose.common.exception.RedditAuthException;
 import net.dean.jraw.http.LoggingMode;
 import net.dean.jraw.http.UserAgent;
 import net.dean.jraw.http.oauth.Credentials;

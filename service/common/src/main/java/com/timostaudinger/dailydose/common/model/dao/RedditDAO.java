@@ -1,9 +1,9 @@
-package com.timostaudinger.dailydose.scheduleEmails.model.dao;
+package com.timostaudinger.dailydose.common.model.dao;
 
-import com.timostaudinger.dailydose.scheduleEmails.exception.RedditAuthException;
-import com.timostaudinger.dailydose.scheduleEmails.exception.RedditLoadException;
-import com.timostaudinger.dailydose.scheduleEmails.util.Frequency;
-import com.timostaudinger.dailydose.scheduleEmails.util.FrequencyUtils;
+import com.timostaudinger.dailydose.common.exception.RedditAuthException;
+import com.timostaudinger.dailydose.common.exception.RedditLoadException;
+import com.timostaudinger.dailydose.common.util.Frequency;
+import com.timostaudinger.dailydose.common.util.FrequencyUtils;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.paginators.Sorting;
 import net.dean.jraw.paginators.SubredditPaginator;

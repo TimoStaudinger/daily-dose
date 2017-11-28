@@ -1,4 +1,4 @@
-package com.timostaudinger.dailydose.scheduleEmails.util;
+package com.timostaudinger.dailydose.common.util;
 
 public enum Frequency {
     HOURLY,
