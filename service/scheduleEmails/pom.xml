@@ -90,6 +90,17 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.github.davidmoten</groupId>
+                <artifactId>aws-maven-plugin</artifactId>
+                <version>0.2.16</version>
+                <configuration>
+                    <serverId>aws</serverId>
+                    <artifact>${project.build.directory}/daily-dose-scheduleemails-1.0-SNAPSHOT.jar</artifact>
+                    <functionName>dailydose-scheduleEmails</functionName>
+                    <region>us-east-1</region>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
