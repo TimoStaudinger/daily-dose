@@ -1,8 +1,7 @@
 pipeline {
-    agent {
-        dockerfile {
-            args '-v /root/.m2:/root/.m2'
-        }
+  agent {
+    dockerfile {
+      args '-v /root/.m2:/root/.m2'
     }
   }
   stages {
