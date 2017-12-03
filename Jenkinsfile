@@ -4,11 +4,12 @@ pipeline {
             args '-v /root/.m2:/root/.m2'
         }
     }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }
+  }
+  stages {
+    stage('Build Service') {
+      steps {
+        sh 'mvn -f ./service clean package'
+      }
     }
+  }
 }
