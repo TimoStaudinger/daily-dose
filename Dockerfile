@@ -1,4 +1,4 @@
-FROM maven:3:alpine
+FROM maven:3-alpine
 
 MAINTAINER Timo M. Staudigner <mail@timostaudinger.com>
 
